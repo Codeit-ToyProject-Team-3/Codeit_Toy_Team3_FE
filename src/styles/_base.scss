@@ -1,0 +1,9 @@
+// 1. 전역 변수 설정 (색상, 폰트, 스페이싱 등)
+$background-color: #fafafa;
+$font-primary: Spoqa Han Sans Neo, sans-serif;
+
+// 2. 전역 타이포그래피 설정
+body {
+  font-family: $font-primary;
+  background-color: $background-color;
+}
