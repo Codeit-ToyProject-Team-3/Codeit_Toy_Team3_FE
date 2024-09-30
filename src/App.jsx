@@ -1,8 +1,12 @@
+import { Route, Routes } from "react-router-dom";
+
+import PublicGroup from "@pages/PublicGroup/PublicGroup";
+
 function App() {
   return (
-    <>
-      <h2>Project Setup</h2>
-    </>
+    <Routes>
+      <Route path="/" element={<PublicGroup />} />
+    </Routes>
   );
 }
 
