@@ -1,5 +1,5 @@
-import { colors } from "@styles/theme/colors";
 import styled from "styled-components";
+import { colors } from "@styles/theme/colors";
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -12,6 +12,7 @@ export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
 
+  background-color: ${colors.white};
   border-bottom: 2px solid ${colors.gray[200]};
 `;
 
