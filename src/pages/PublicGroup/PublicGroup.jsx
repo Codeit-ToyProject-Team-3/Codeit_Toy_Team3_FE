@@ -25,8 +25,8 @@ const PublicGroup = () => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sortOption, setSortOption] = useState("공감순");
-
   const [privacyBoundClick, setPrivacyBoundClick] = useState("public");
+  const [searchContent, setSearchContent] = useState("");
 
   const handleDropdownOpen = (event) => {
     event.stopPropagation();
@@ -37,6 +37,11 @@ const PublicGroup = () => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
       setDropdownOpen(false);
     }
+  };
+
+  const handleSearchContent = (e) => {
+    setSearchContent(e.target.value);
+    // console.log(e.target.value); // 출력되는 입력 값 확인
   };
 
   useEffect(() => {
@@ -70,7 +75,12 @@ const PublicGroup = () => {
           </PublicPrivateButtonContainer>
           <SearchBar>
             <StyledSearchIcon />
-            <SearchInput placeholder="그룹명을 검색해 주세요" />
+            <SearchInput
+              type="text"
+              onChange={handleSearchContent}
+              value={searchContent}
+              placeholder="그룹명을 검색해 주세요"
+            />
           </SearchBar>
           <SortDropdownContainer ref={dropdownRef} onClick={handleDropdownOpen}>
             <h2 className="selected">{sortOption}</h2>
