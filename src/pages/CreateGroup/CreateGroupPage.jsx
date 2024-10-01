@@ -11,8 +11,10 @@ import {
   GroupImageContainer,
   GroupImageFileName,
   GroupImageInput,
+  GroupImageValidation,
   GroupIntroductionArea,
   GroupIntroductionContainer,
+  GroupIntroductionWordLimit,
   GroupModuleContainer,
   GroupNameInput,
   GroupNameInputContainer,
@@ -20,6 +22,7 @@ import {
   GroupPrivacyContent,
   GroupPrivacyText,
   InputErrorMessage,
+  IntroCharacterCount,
   PasswordInput,
   PasswordInputContainer,
   PasswordVisibleButton,
@@ -40,7 +43,10 @@ const CreateGroupPage = () => {
 
   const [groupNameValue, setGroupNameValue] = useState("");
   const [validInputMessage, setValidInputMessage] = useState("");
+
   const [groupImageFileName, setGroupImageFileName] = useState("");
+  const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
+
   const [groupIntroduction, setGroupIntroduction] = useState("");
 
   const [privacyText, setPrivacyText] = useState("비공개");
@@ -114,9 +120,24 @@ const CreateGroupPage = () => {
     }
   };
 
+  const MAX_FILE_SIZE = 2 * 1024 * 1024;
+
   const handleGroupImageChange = (e) => {
-    if (e.target.files.length > 0) {
-      setGroupImageFileName(e.target.files[0].name);
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile && selectedFile.size > MAX_FILE_SIZE) {
+      setFileSizeErrorMessage(
+        "파일 용량이 2MB를 초과했습니다. 다른 파일을 선택해주세요."
+      );
+
+      e.target.files = null;
+      setGroupImageFileName("");
+    } else {
+      setFileSizeErrorMessage("");
+
+      if (e.target.files.length > 0) {
+        setGroupImageFileName(e.target.files[0].name);
+      }
     }
   };
 
@@ -124,8 +145,14 @@ const CreateGroupPage = () => {
     groupImageRef.current.click();
   };
 
+  const MAX_INTRO_WORDS = 200;
+
   const handleGroupIntroduction = (e) => {
-    setGroupIntroduction(e.target.value);
+    const { value } = e.target;
+
+    if (value.length <= MAX_INTRO_WORDS) {
+      setGroupIntroduction(value);
+    }
   };
 
   const handlePrivacyText = () => {
@@ -183,35 +210,47 @@ const CreateGroupPage = () => {
 
         <GroupModuleContainer>
           <CreateGroupSubTitle>대표 이미지</CreateGroupSubTitle>
-          <GroupImageContainer>
-            <GroupImageInput
-              type="file"
-              ref={groupImageRef}
-              onChange={handleGroupImageChange}
-            />
-            <GroupImageFileName
-              placeholder="파일을 선택해주세요"
-              value={groupImageFileName}
-              readOnly
-            />
-            <FileSelectButton onClick={handleFileSelectClick}>
-              파일 선택
-            </FileSelectButton>
-          </GroupImageContainer>
+          <GroupImageValidation>
+            <GroupImageContainer $isValid={fileSizeErrorMessage === ""}>
+              <GroupImageInput
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                ref={groupImageRef}
+                onChange={handleGroupImageChange}
+              />
+              <GroupImageFileName
+                placeholder="파일을 선택해주세요"
+                value={groupImageFileName}
+                readOnly
+              />
+              <FileSelectButton onClick={handleFileSelectClick}>
+                파일 선택
+              </FileSelectButton>
+            </GroupImageContainer>
+            <InputErrorMessage $isValid={fileSizeErrorMessage === ""}>
+              {fileSizeErrorMessage}
+            </InputErrorMessage>
+          </GroupImageValidation>
         </GroupModuleContainer>
 
         <GroupModuleContainer>
           <CreateGroupSubTitle>그룹 소개</CreateGroupSubTitle>
-          <GroupIntroductionContainer $isFocused={introInputFocused}>
-            <GroupIntroductionArea
-              type="text"
-              placeholder="그룹을 소개해주세요"
-              value={groupIntroduction}
-              ref={introInputRef}
-              onChange={handleGroupIntroduction}
-              onFocus={() => setIntroInputFocused(true)}
-            />
-          </GroupIntroductionContainer>
+          <GroupIntroductionWordLimit>
+            <GroupIntroductionContainer $isFocused={introInputFocused}>
+              <GroupIntroductionArea
+                type="text"
+                placeholder="그룹을 소개해주세요"
+                maxLength={MAX_INTRO_WORDS}
+                value={groupIntroduction}
+                ref={introInputRef}
+                onChange={handleGroupIntroduction}
+                onFocus={() => setIntroInputFocused(true)}
+              />
+            </GroupIntroductionContainer>
+            <IntroCharacterCount>
+              {groupIntroduction.length}/{MAX_INTRO_WORDS} character
+            </IntroCharacterCount>
+          </GroupIntroductionWordLimit>
         </GroupModuleContainer>
 
         <GroupPrivacyContainer>

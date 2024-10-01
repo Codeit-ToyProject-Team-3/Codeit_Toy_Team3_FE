@@ -101,6 +101,29 @@ export const GroupImageContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+
+    width: 290px;
+    height: 45px;
+
+    border: 1px solid;
+    border-color: ${({ $isValid }) =>
+      $isValid ? `${colors.gray[200]}` : `${colors.red}`};
+    border-radius: 6px;
+    background-color: transparent;
+
+    opacity: ${({ $isValid }) => ($isValid ? 0 : 1)};
+    transition: opacity 0.1s;
+    pointer-events: none;
+  }
 `;
 
 export const GroupImageInput = styled.input`
@@ -151,6 +174,30 @@ export const GroupIntroductionContainer = styled.div`
     transition: margin-left 0.3s, width 0.35s;
     pointer-events: none;
   }
+`;
+
+export const GroupIntroductionWordLimit = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const IntroCharacterCount = styled.p`
+  align-self: flex-end;
+  margin-right: 5px;
+
+  ${({ theme }) => theme.fontStyles.Footnote}
+  color: ${colors.gray[500]};
+`;
+
+export const GroupImageValidation = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 export const GroupIntroductionArea = styled.textarea`
