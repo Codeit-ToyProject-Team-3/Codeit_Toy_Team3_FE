@@ -1,9 +1,12 @@
+import { useEffect, useRef, useState } from "react";
+
 import {
   CreateGroupButtonLarge,
   GroupSearchBarContainer,
   NoGroupContainer,
+  PrivateButton,
+  PublicButton,
   PublicGroupContainer,
-  PublicPrivateButton,
   PublicPrivateButtonContainer,
   SearchBar,
   SearchInput,
@@ -16,16 +19,40 @@ import Header from "@layout/Header/Header";
 
 import noGroupIcon from "@assets/no-group-icon.svg";
 import DropdownArrow from "@assets/arrow_dropdown.svg";
-import { useState } from "react";
 
 const PublicGroup = () => {
-  const [dropdownClick, setDropdownClick] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [sortOption, setSortOption] = useState("공감순");
+  const [privacyBoundClick, setPrivacyBoundClick] = useState("public");
+  const [searchContent, setSearchContent] = useState("");
 
   const handleDropdownOpen = (event) => {
     event.stopPropagation();
-    setDropdownClick((prev) => !prev);
+    setDropdownOpen((prev) => !prev);
   };
+
+  const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setDropdownOpen(false);
+    }
+  };
+
+  const handleSearchContent = (e) => {
+    setSearchContent(e.target.value);
+    // console.log(e.target.value); // 출력되는 입력 값 확인
+  };
+
+  useEffect(() => {
+    // 마운트 시 이벤트 리스너 등록
+    document.addEventListener("click", handleClickOutside);
+
+    // 언마운트 시 이벤트 리스너 제거
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -33,17 +60,32 @@ const PublicGroup = () => {
       <PublicGroupContainer>
         <GroupSearchBarContainer>
           <PublicPrivateButtonContainer>
-            <PublicPrivateButton>공개</PublicPrivateButton>
-            <PublicPrivateButton>비공개</PublicPrivateButton>
+            <PublicButton
+              onClick={() => setPrivacyBoundClick("public")}
+              $isClicked={privacyBoundClick}
+            >
+              공개
+            </PublicButton>
+            <PrivateButton
+              onClick={() => setPrivacyBoundClick("private")}
+              $isClicked={privacyBoundClick}
+            >
+              비공개
+            </PrivateButton>
           </PublicPrivateButtonContainer>
           <SearchBar>
             <StyledSearchIcon />
-            <SearchInput placeholder="그룹명을 검색해 주세요" />
+            <SearchInput
+              type="text"
+              onChange={handleSearchContent}
+              value={searchContent}
+              placeholder="그룹명을 검색해 주세요"
+            />
           </SearchBar>
-          <SortDropdownContainer onClick={handleDropdownOpen}>
+          <SortDropdownContainer ref={dropdownRef} onClick={handleDropdownOpen}>
             <h2 className="selected">{sortOption}</h2>
             <img src={DropdownArrow} alt="dropdown-arrow" />
-            <SortDropdownOptions $isDropdownClicked={dropdownClick}>
+            <SortDropdownOptions $isDropdownClicked={dropdownOpen}>
               <li
                 onClick={() => setSortOption("최신순")}
                 className={`sortBy ${
