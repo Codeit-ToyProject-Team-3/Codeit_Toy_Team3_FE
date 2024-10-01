@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
   CreateGroupButtonLarge,
@@ -118,7 +119,9 @@ const PublicGroup = () => {
           <h2 className="notice-1">등록된 공개 그룹이 없습니다.</h2>
           <h3 className="notice-2">가장 먼저 그룹을 만들어보세요!</h3>
         </NoGroupContainer>
-        <CreateGroupButtonLarge>그룹 만들기</CreateGroupButtonLarge>
+        <Link to="/create-group">
+          <CreateGroupButtonLarge>그룹 만들기</CreateGroupButtonLarge>
+        </Link>
       </PublicGroupContainer>
     </>
   );

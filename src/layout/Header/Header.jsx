@@ -11,7 +11,9 @@ const Header = () => {
         <Link to="/">
           <MainLogo src={mainLogo} alt="조각집 메인 로고" />
         </Link>
-        <CreateGroupButton>그룹 만들기</CreateGroupButton>
+        <Link to="/create-group">
+          <CreateGroupButton>그룹 만들기</CreateGroupButton>
+        </Link>
       </HeaderContainer>
     </>
   );
