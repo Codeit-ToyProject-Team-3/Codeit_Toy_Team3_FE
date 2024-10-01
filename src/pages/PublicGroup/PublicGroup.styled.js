@@ -5,13 +5,12 @@ import SearchIcon from "@assets/search-icon.svg?react";
 
 export const PublicGroupContainer = styled.div`
   width: 100%;
+  margin-top: 140px;
+  padding: 0 180px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-top: 140px;
-  padding: 0 180px;
 `;
 
 export const GroupSearchBarContainer = styled.div`
@@ -19,7 +18,7 @@ export const GroupSearchBarContainer = styled.div`
   height: 45px;
 
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   gap: 40px;
 `;
@@ -28,24 +27,41 @@ export const PublicPrivateButtonContainer = styled.div`
   height: 100%;
 
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 10px;
 `;
 
-export const PublicPrivateButton = styled.button`
+const PublicPrivateButton = styled.button`
   height: 100%;
-
   padding: 13px 20px;
+
   border-radius: 22.5px;
 
   ${({ theme }) => theme.fontStyles.Caption1}
-  color: ${colors.white};
-  background-color: ${colors.black};
 
   flex-shrink: 0;
+
+  transition: color 0.3s ease, background-color 0.25s;
+`;
+
+export const PublicButton = styled(PublicPrivateButton)`
+  ${({ $isClicked }) =>
+    $isClicked === "public"
+      ? `color: ${colors.white}; background-color: ${colors.black};`
+      : `color: ${colors.black}; background-color: none;`};
+`;
+
+export const PrivateButton = styled(PublicPrivateButton)`
+  flex-grow: 1;
+
+  ${({ $isClicked }) =>
+    $isClicked === "private"
+      ? `color: ${colors.white}; background-color: ${colors.black};`
+      : `color: ${colors.black}; background-color: none;`};
 `;
 
 export const SearchBar = styled.div`
-  width: 1186px;
+  flex-grow: 1;
   height: 100%;
   padding: 10px 20px;
 
@@ -105,7 +121,6 @@ export const SortDropdownContainer = styled.div`
   .sortBy {
     width: 100%;
     height: 45px;
-
     padding-left: 20px;
 
     display: flex;
@@ -120,9 +135,6 @@ export const SortDropdownContainer = styled.div`
 `;
 
 export const SortDropdownOptions = styled.ul`
-  opacity: ${({ $isDropdownClicked }) => ($isDropdownClicked ? 1 : 0)};
-  transition: opacity 0.3s ease;
-
   width: 100%;
 
   display: flex;
@@ -134,6 +146,9 @@ export const SortDropdownOptions = styled.ul`
   border-radius: 6px;
   border: 1px solid ${colors.black};
 
+  opacity: ${({ $isDropdownClicked }) => ($isDropdownClicked ? 1 : 0)};
+  transition: opacity 0.28s ease;
+
   .selected-option {
     color: ${colors.black};
   }
@@ -141,14 +156,13 @@ export const SortDropdownOptions = styled.ul`
 
 export const NoGroupContainer = styled.div`
   width: 100%;
+  margin-top: 200px;
+  margin-bottom: 180px;
 
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 40px;
-
-  margin-top: 200px;
-  margin-bottom: 180px;
 
   img {
     width: 100px;
@@ -169,12 +183,11 @@ export const NoGroupContainer = styled.div`
 export const CreateGroupButtonLarge = styled.button`
   width: 400px;
   height: 50px;
+  margin-bottom: 264px;
 
   border-radius: 6px;
 
   ${({ theme }) => theme.fontStyles.Caption1}
   background-color: ${colors.black};
   color: ${colors.gray[50]};
-
-  margin-bottom: 264px;
 `;
