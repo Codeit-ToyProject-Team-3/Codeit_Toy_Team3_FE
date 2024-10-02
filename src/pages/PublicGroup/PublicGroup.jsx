@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import {
   CreateGroupButtonLarge,
@@ -11,15 +12,17 @@ import {
   PublicPrivateButtonContainer,
   SearchBar,
   SearchInput,
+  SelectedOptions,
   SortDropdownContainer,
   SortDropdownOptions,
+  StyledDropdownArrow,
   StyledSearchIcon,
 } from "./PublicGroup.styled";
 
 import Header from "@layout/Header/Header";
 
 import noGroupIcon from "@assets/no-group-icon.svg";
-import DropdownArrow from "@assets/arrow_dropdown.svg";
+import PublicGroupCard from "@components/PublicGroupCard/PublicGroupCard";
 
 const PublicGroup = () => {
   const dropdownRef = useRef(null);
@@ -28,6 +31,9 @@ const PublicGroup = () => {
   const [sortOption, setSortOption] = useState("공감순");
   const [privacyBoundClick, setPrivacyBoundClick] = useState("public");
   const [searchContent, setSearchContent] = useState("");
+
+  const [publicGroupList, setPublicGroupList] = useState([]);
+  const [listTotalPage, setListTotalPage] = useState(0);
 
   const handleDropdownOpen = (event) => {
     event.stopPropagation();
@@ -53,6 +59,21 @@ const PublicGroup = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchPublicGroupList = async () => {
+      const response = await axios.get("/data/groupCard.json");
+      const fetchedGroupListData = response.data;
+      const fetchedGroupList = fetchedGroupListData.data;
+
+      console.log(fetchedGroupList);
+
+      setPublicGroupList(fetchedGroupList);
+      setListTotalPage(fetchedGroupListData.totalPages);
+    };
+
+    fetchPublicGroupList();
   }, []);
 
   return (
@@ -84,8 +105,10 @@ const PublicGroup = () => {
             />
           </SearchBar>
           <SortDropdownContainer ref={dropdownRef} onClick={handleDropdownOpen}>
-            <h2 className="selected">{sortOption}</h2>
-            <img src={DropdownArrow} alt="dropdown-arrow" />
+            <SelectedOptions>
+              <h2 className="selected">{sortOption}</h2>
+              <StyledDropdownArrow $isDropdownClicked={dropdownOpen} />
+            </SelectedOptions>
             <SortDropdownOptions $isDropdownClicked={dropdownOpen}>
               <li
                 onClick={() => setSortOption("최신순")}
@@ -114,14 +137,23 @@ const PublicGroup = () => {
             </SortDropdownOptions>
           </SortDropdownContainer>
         </GroupSearchBarContainer>
-        <NoGroupContainer>
-          <img src={noGroupIcon} alt="No-Group-Icon" />
-          <h2 className="notice-1">등록된 공개 그룹이 없습니다.</h2>
-          <h3 className="notice-2">가장 먼저 그룹을 만들어보세요!</h3>
-        </NoGroupContainer>
-        <Link to="/create-group">
-          <CreateGroupButtonLarge>그룹 만들기</CreateGroupButtonLarge>
-        </Link>
+        {publicGroupList ? (
+          <PublicGroupCard
+            publicGroupList={publicGroupList}
+            listTotalPage={listTotalPage}
+          />
+        ) : (
+          <>
+            <NoGroupContainer>
+              <img src={noGroupIcon} alt="No-Group-Icon" />
+              <h2 className="notice-1">등록된 공개 그룹이 없습니다.</h2>
+              <h3 className="notice-2">가장 먼저 그룹을 만들어보세요!</h3>
+            </NoGroupContainer>
+            <Link to="/create-group">
+              <CreateGroupButtonLarge>그룹 만들기</CreateGroupButtonLarge>
+            </Link>
+          </>
+        )}
       </PublicGroupContainer>
     </>
   );
