@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "@styles/theme/colors";
 
 import SearchIcon from "@assets/search-icon.svg?react";
+import arrowIcon from "@assets/arrow_dropdown.svg?react";
 
 export const PublicGroupContainer = styled.div`
   width: 100%;
@@ -107,13 +108,6 @@ export const SortDropdownContainer = styled.div`
   position: relative;
 
   .selected {
-    width: 100%;
-    height: 45px;
-    padding-left: 20px;
-
-    display: flex;
-    align-items: center;
-
     ${({ theme }) => theme.fontStyles.Caption2}
     color: ${colors.black};
   }
@@ -134,6 +128,26 @@ export const SortDropdownContainer = styled.div`
   }
 `;
 
+export const SelectedOptions = styled.div`
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 63px;
+`;
+
+export const StyledDropdownArrow = styled(arrowIcon)`
+  width: 24px;
+  height: 24px;
+
+  fill: ${colors.black};
+  rotate: ${({ $isDropdownClicked }) =>
+    $isDropdownClicked ? "180deg" : "0deg"};
+
+  transition: rotate 0.3s ease;
+`;
+
 export const SortDropdownOptions = styled.ul`
   width: 100%;
 
@@ -142,6 +156,7 @@ export const SortDropdownOptions = styled.ul`
 
   position: absolute;
   top: 47px;
+  z-index: ${({ $isDropdownClicked }) => ($isDropdownClicked ? 1 : -1)};
 
   border-radius: 6px;
   border: 1px solid ${colors.black};
