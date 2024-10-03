@@ -5,7 +5,6 @@ import likeIcon from "@assets/group_like-icon.svg?react";
 
 export const PublicGroupListWrapper = styled.div`
   width: 100%;
-  padding: 0 180px;
   margin-top: 60px;
   margin-bottom: 60px;
 

@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 
-import PublicGroup from "@pages/PublicGroup/PublicGroup";
-import CreateGroupPage from "@pages/CreateGroup/CreateGroupPage";
+import GroupListPage from "@pages/GroupListPage/GroupListPage";
+import CreateGroupPage from "@pages/CreateGroupPage/CreateGroupPage";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<PublicGroup />} />
+      <Route path="/" element={<GroupListPage />} />
       <Route path="/create-group" element={<CreateGroupPage />} />
     </Routes>
   );
