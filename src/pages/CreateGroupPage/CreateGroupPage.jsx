@@ -16,8 +16,6 @@ import {
   GroupIntroductionContainer,
   GroupIntroductionWordLimit,
   GroupModuleContainer,
-  GroupNameInput,
-  GroupNameInputContainer,
   GroupPrivacyContainer,
   GroupPrivacyContent,
   GroupPrivacyText,
@@ -30,6 +28,7 @@ import {
   PrivacyToggleInput,
   StyledEyeIcon,
 } from "./CreateGroupPage.styled";
+import TextInputModule from "@components/Input/Text/TextInputModule";
 
 const CreateGroupPage = () => {
   const nameInputRef = useRef(null);
@@ -188,25 +187,17 @@ const CreateGroupPage = () => {
       <Header />
       <CreateGroupPageContainer>
         <CreateGroupTitle>그룹 만들기</CreateGroupTitle>
-        <GroupModuleContainer>
-          <CreateGroupSubTitle>그룹명</CreateGroupSubTitle>
-          <GroupNameInputContainer
-            $isFocused={nameInputFocused}
-            $isValid={validInputMessage === ""}
-          >
-            <GroupNameInput
-              onFocus={() => setNameInputFocused(true)}
-              ref={nameInputRef}
-              onChange={handleGroupNameValue}
-              value={groupNameValue}
-              type="text"
-              placeholder="그룹명을 입력해주세요"
-            />
-          </GroupNameInputContainer>
-          <InputErrorMessage $isValid={validInputMessage === ""}>
-            {validInputMessage}
-          </InputErrorMessage>
-        </GroupModuleContainer>
+        <TextInputModule
+          title="그룹명"
+          taregtInputFocused={nameInputFocused}
+          errorMessage={validInputMessage}
+          setTargetInputFocused={setNameInputFocused}
+          targetRef={nameInputRef}
+          targetInputValue={groupNameValue}
+          handleTargetInputValue={handleGroupNameValue}
+          placeholderContent="그룹명을 입력해주세요"
+          InputErrorMessage={validInputMessage}
+        />
 
         <GroupModuleContainer>
           <CreateGroupSubTitle>대표 이미지</CreateGroupSubTitle>
