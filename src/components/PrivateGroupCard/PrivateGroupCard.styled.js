@@ -4,7 +4,10 @@ import { colors } from "@styles/theme/colors";
 import {
   PublicGroupCardContainer,
   PublicGroupListContainer,
+  PublicGroupListWrapper,
 } from "@components/PublicGroupCard/PublicGroupCard.styled";
+
+export const PrivateGroupListWrapper = styled(PublicGroupListWrapper)``;
 
 export const PrivateGroupListContainer = styled(PublicGroupListContainer)``;
 

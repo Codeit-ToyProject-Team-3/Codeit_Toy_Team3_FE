@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "@styles/theme/colors";
 
-export const PublicGroupContainer = styled.div`
+export const GroupListPageContainer = styled.div`
   width: 100%;
   margin-top: 140px;
   padding: 0 180px;

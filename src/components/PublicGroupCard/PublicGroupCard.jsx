@@ -22,36 +22,36 @@ const PublicGroupCard = ({ publicGroupList, listTotalPage }) => {
       <Header />
       <PublicGroupListWrapper>
         <PublicGroupListContainer>
-          {publicGroupList.map((publicGroup) => (
-            <PublicGroupCardContainer key={publicGroup.id}>
+          {publicGroupList?.map((publicGroup) => (
+            <PublicGroupCardContainer key={publicGroup?.id}>
               <PublicGroupImage
-                src={publicGroup.imageUrl}
-                alt={publicGroup.name}
+                src={publicGroup?.imageUrl}
+                alt={publicGroup?.name}
               />
               <PublicGroupContentContainer>
                 <GroupCardHeader>
                   <h3 className="created-date">D+{publicGroup.createdAt}</h3>
                   <span className="divider">|</span>
-                  <h3 className="privacy-bound">{publicGroup.isPublic}</h3>
+                  <h3 className="privacy-bound">{publicGroup?.isPublic}</h3>
                 </GroupCardHeader>
                 <GroupCardMainContent>
-                  <h3 className="name">{publicGroup.name}</h3>
-                  <p className="introduction">{publicGroup.introduction}</p>
+                  <h3 className="name">{publicGroup?.name}</h3>
+                  <p className="introduction">{publicGroup?.introduction}</p>
                 </GroupCardMainContent>
                 <GroupCardFooter>
                   <GroupCardFooterModule>
                     <h5 className="title">획득 배지</h5>
-                    <h5 className="stat">{publicGroup.badgeCount}</h5>
+                    <h5 className="stat">{publicGroup?.badgeCount}</h5>
                   </GroupCardFooterModule>
                   <GroupCardFooterModule>
                     <h5 className="title">추억</h5>
-                    <h5 className="stat">{publicGroup.postCount}</h5>
+                    <h5 className="stat">{publicGroup?.postCount}</h5>
                   </GroupCardFooterModule>
                   <GroupCardFooterModule>
                     <h5 className="title">그룹 공감</h5>
                     <GroupLikeContainer>
                       <StyledLikeIcon />
-                      <h5 className="stat">{publicGroup.likeCount}</h5>
+                      <h5 className="stat">{publicGroup?.likeCount}</h5>
                     </GroupLikeContainer>
                   </GroupCardFooterModule>
                 </GroupCardFooter>
@@ -59,7 +59,7 @@ const PublicGroupCard = ({ publicGroupList, listTotalPage }) => {
             </PublicGroupCardContainer>
           ))}
         </PublicGroupListContainer>
-        <Pagination totalPages={listTotalPage} />
+        <Pagination groupList={publicGroupList} totalPages={listTotalPage} />
       </PublicGroupListWrapper>
     </>
   );

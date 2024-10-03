@@ -10,7 +10,7 @@ import {
   PreviousArrow,
 } from "./Pagination.styled";
 
-const Pagination = ({ totalPages }) => {
+const Pagination = ({ groupList, totalPages }) => {
   const [currentPage, setCurrentPage] = useState(1);
   //   console.log(currentPage);
 
@@ -26,39 +26,47 @@ const Pagination = ({ totalPages }) => {
     setCurrentPage(pageNumber);
   };
 
+  // startPage 와 endPage 값이 유효한지 확인하고, 그렇지 않으면 아무것도 렌더링하지 않음
+  if (startPage > endPage || endPage < 1) {
+    return null;
+  }
+
   return (
     <>
-      <PaginationContainer>
-        <NextPreviousButton
-          disabled={currentPage === 1}
-          onClick={() => handleCurrentPage(currentPage - 1)}
-        >
-          <PreviousArrow />
-        </NextPreviousButton>
+      {groupList?.length !== 0 && (
+        <PaginationContainer>
+          <NextPreviousButton
+            disabled={currentPage === 1}
+            onClick={() => handleCurrentPage(currentPage - 1)}
+          >
+            <PreviousArrow />
+          </NextPreviousButton>
 
-        <PageButtonContainer>
-          {/* 페이지 번호 동적 렌더링 */}
-          {[...Array(endPage - startPage + 1)].map((_, index) => {
-            const pageNumber = startPage + index;
-            return (
-              <PageButton
-                key={pageNumber}
-                onClick={() => handleCurrentPage(pageNumber)}
-                $isActive={currentPage === pageNumber}
-              >
-                {pageNumber}
-              </PageButton>
-            );
-          })}
-        </PageButtonContainer>
+          <PageButtonContainer>
+            {/* 페이지 번호 동적 렌더링 */}
+            {startPage <= endPage &&
+              [...Array(endPage - startPage + 1)].map((_, index) => {
+                const pageNumber = startPage + index;
+                return (
+                  <PageButton
+                    key={pageNumber}
+                    onClick={() => handleCurrentPage(pageNumber)}
+                    $isActive={currentPage === pageNumber}
+                  >
+                    {pageNumber}
+                  </PageButton>
+                );
+              })}
+          </PageButtonContainer>
 
-        <NextPreviousButton
-          disabled={currentPage === totalPages}
-          onClick={() => handleCurrentPage(currentPage + 1)}
-        >
-          <NextArrow />
-        </NextPreviousButton>
-      </PaginationContainer>
+          <NextPreviousButton
+            disabled={currentPage === totalPages}
+            onClick={() => handleCurrentPage(currentPage + 1)}
+          >
+            <NextArrow />
+          </NextPreviousButton>
+        </PaginationContainer>
+      )}
     </>
   );
 };

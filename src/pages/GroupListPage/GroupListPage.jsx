@@ -4,8 +4,8 @@ import axios from "axios";
 
 import {
   CreateGroupButtonLarge,
+  GroupListPageContainer,
   NoGroupContainer,
-  PublicGroupContainer,
 } from "./GroupListPage.styled";
 
 import Header from "@layout/Header/Header";
@@ -13,28 +13,39 @@ import GroupSearchBar from "@layout/GroupSearchBar/GroupSearchBar";
 import PublicGroupCard from "@components/PublicGroupCard/PublicGroupCard";
 
 import noGroupIcon from "@assets/no-group-icon.svg";
+import PrivateGroupCard from "@components/PrivateGroupCard/PrivateGroupCard";
 
 const GroupListPage = () => {
   const [privacyCategory, setPrivacyCategory] = useState("공개");
 
-  const [groupList, setGroupList] = useState([]);
+  const [groupList, setGroupList] = useState(null);
   const [listTotalPage, setListTotalPage] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetching Group List Data
   useEffect(() => {
     const fetchPublicGroupList = async () => {
-      const response = await axios.get("/data/groupCard.json");
-      const fetchedGroupListData = response.data;
-      const fetchedGroupList = fetchedGroupListData.data;
-      console.log(fetchedGroupList);
+      setIsLoading(true);
+      try {
+        const response = await axios.get("/data/groupCard.json");
+        const fetchedGroupListData = response.data;
+        const fetchedGroupList = fetchedGroupListData.data;
+        console.log(fetchedGroupList);
 
-      const filteredGroupList = fetchedGroupList.filter(
-        (group) => group.isPublic === privacyCategory
-      );
-      console.log(filteredGroupList);
+        const filteredGroupList = fetchedGroupList?.filter(
+          (group) => group.isPublic === privacyCategory
+        );
+        console.log(filteredGroupList);
 
-      setGroupList(filteredGroupList);
-      setListTotalPage(fetchedGroupListData.totalPages);
+        setGroupList(filteredGroupList);
+        setListTotalPage(fetchedGroupListData.totalPages);
+      } catch (error) {
+        console.error("Error fetching group list", error);
+        setGroupList([]);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     fetchPublicGroupList();
@@ -43,17 +54,14 @@ const GroupListPage = () => {
   return (
     <>
       <Header />
-      <PublicGroupContainer>
+      <GroupListPageContainer>
         <GroupSearchBar
           privacyCategory={privacyCategory}
           setPrivacyCategory={setPrivacyCategory}
         />
-        {groupList ? (
-          <PublicGroupCard
-            publicGroupList={groupList}
-            listTotalPage={listTotalPage}
-          />
-        ) : (
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : groupList === undefined || groupList?.length === 0 ? (
           <>
             <NoGroupContainer>
               <img src={noGroupIcon} alt="No-Group-Icon" />
@@ -64,8 +72,18 @@ const GroupListPage = () => {
               <CreateGroupButtonLarge>그룹 만들기</CreateGroupButtonLarge>
             </Link>
           </>
+        ) : privacyCategory === "공개" ? (
+          <PublicGroupCard
+            publicGroupList={groupList}
+            listTotalPage={listTotalPage}
+          />
+        ) : (
+          <PrivateGroupCard
+            privateGroupList={groupList}
+            listTotalPage={listTotalPage}
+          />
         )}
-      </PublicGroupContainer>
+      </GroupListPageContainer>
     </>
   );
 };
