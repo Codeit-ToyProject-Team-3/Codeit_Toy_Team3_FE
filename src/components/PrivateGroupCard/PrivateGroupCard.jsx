@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import Pagination from "@components/Pagination/Pagination";
 import {
   PrivateGroupCardContainer,
   PrivateGroupListContainer,
@@ -14,6 +13,8 @@ import {
   GroupLikeContainer,
   StyledLikeIcon,
 } from "@components/PublicGroupCard/PublicGroupCard.styled";
+
+import Pagination from "@components/Pagination/Pagination";
 
 const PrivateGroupCard = ({ privateGroupList, listTotalPage }) => {
   return (
