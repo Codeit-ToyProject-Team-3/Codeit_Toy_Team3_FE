@@ -4,16 +4,6 @@ import { colors } from "@styles/theme/colors";
 import SearchIcon from "@assets/search-icon.svg?react";
 import arrowIcon from "@assets/arrow_dropdown.svg?react";
 
-export const PublicGroupContainer = styled.div`
-  width: 100%;
-  margin-top: 140px;
-  padding: 0 180px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 export const GroupSearchBarContainer = styled.div`
   width: 100%;
   height: 45px;
@@ -47,7 +37,7 @@ const PublicPrivateButton = styled.button`
 
 export const PublicButton = styled(PublicPrivateButton)`
   ${({ $isClicked }) =>
-    $isClicked === "public"
+    $isClicked === "공개"
       ? `color: ${colors.white}; background-color: ${colors.black};`
       : `color: ${colors.black}; background-color: none;`};
 `;
@@ -56,7 +46,7 @@ export const PrivateButton = styled(PublicPrivateButton)`
   flex-grow: 1;
 
   ${({ $isClicked }) =>
-    $isClicked === "private"
+    $isClicked === "비공개"
       ? `color: ${colors.white}; background-color: ${colors.black};`
       : `color: ${colors.black}; background-color: none;`};
 `;
@@ -96,6 +86,8 @@ export const SortDropdownContainer = styled.div`
   width: 160px;
   height: 100%;
 
+  position: relative;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -104,28 +96,6 @@ export const SortDropdownContainer = styled.div`
   border: 1px solid ${colors.black};
 
   cursor: pointer;
-
-  position: relative;
-
-  .selected {
-    ${({ theme }) => theme.fontStyles.Caption2}
-    color: ${colors.black};
-  }
-
-  .sortBy {
-    width: 100%;
-    height: 45px;
-    padding-left: 20px;
-
-    display: flex;
-    align-items: center;
-
-    ${({ theme }) => theme.fontStyles.Caption2}
-    color: ${colors.gray[500]};
-
-    border-radius: 6px;
-    border: 1px solid ${colors.gray[50]};
-  }
 `;
 
 export const SelectedOptions = styled.div`
@@ -135,6 +105,11 @@ export const SelectedOptions = styled.div`
   justify-content: center;
   align-items: center;
   gap: 63px;
+
+  .selected {
+    ${({ theme }) => theme.fontStyles.Caption2}
+    color: ${colors.black};
+  }
 `;
 
 export const StyledDropdownArrow = styled(arrowIcon)`
@@ -150,59 +125,41 @@ export const StyledDropdownArrow = styled(arrowIcon)`
 
 export const SortDropdownOptions = styled.ul`
   width: 100%;
+  padding: 5px 0;
 
   display: flex;
   flex-direction: column;
 
   position: absolute;
   top: 47px;
-  z-index: ${({ $isDropdownClicked }) => ($isDropdownClicked ? 1 : -1)};
+  pointer-events: ${({ $isDropdownClicked }) =>
+    $isDropdownClicked ? "visible" : "none"};
 
   border-radius: 6px;
   border: 1px solid ${colors.black};
 
+  background-color: ${colors.gray[50]};
+
   opacity: ${({ $isDropdownClicked }) => ($isDropdownClicked ? 1 : 0)};
-  transition: opacity 0.28s ease;
+  transition: opacity 0.3s ease;
 
-  .selected-option {
-    color: ${colors.black};
-  }
-`;
+  .sortBy {
+    width: 100%;
+    height: 45px;
+    padding: 10px 0;
+    padding-left: 20px;
 
-export const NoGroupContainer = styled.div`
-  width: 100%;
-  margin-top: 200px;
-  margin-bottom: 180px;
+    display: flex;
+    align-items: center;
 
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 40px;
-
-  img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .notice-1 {
-    ${({ theme }) => theme.fontStyles.Body1}
+    ${({ theme }) => theme.fontStyles.Caption2}
     color: ${colors.gray[500]};
   }
 
-  .notice-2 {
-    ${({ theme }) => theme.fontStyles.Caption2}
-    color: ${colors.gray[400]};
+  .selected-option {
+    color: ${colors.black};
+    background-color: ${colors.gray[100]};
+
+    transition: color, background-color 0.2s;
   }
-`;
-
-export const CreateGroupButtonLarge = styled.button`
-  width: 400px;
-  height: 50px;
-  margin-bottom: 264px;
-
-  border-radius: 6px;
-
-  ${({ theme }) => theme.fontStyles.Caption1}
-  background-color: ${colors.black};
-  color: ${colors.gray[50]};
 `;
