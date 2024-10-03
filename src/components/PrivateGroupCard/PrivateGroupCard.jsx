@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
+
 import {
   PrivateGroupCardContainer,
   PrivateGroupListContainer,
@@ -17,11 +19,20 @@ import {
 import Pagination from "@components/Pagination/Pagination";
 
 const PrivateGroupCard = ({ privateGroupList, listTotalPage }) => {
+  const navigate = useNavigate();
+
+  const handleGroupClick = (id) => {
+    navigate(`/group/${id}/verify-password`);
+  };
+
   return (
     <PrivateGroupListWrapper>
       <PrivateGroupListContainer>
         {privateGroupList?.map((privateGroup) => (
-          <PrivateGroupCardContainer key={privateGroup?.id}>
+          <PrivateGroupCardContainer
+            key={privateGroup?.id}
+            onClick={() => handleGroupClick(privateGroup?.id)}
+          >
             <GroupCardHeader>
               <h3 className="created-date">D+{privateGroup?.createdAt}</h3>
               <span className="divider">|</span>
