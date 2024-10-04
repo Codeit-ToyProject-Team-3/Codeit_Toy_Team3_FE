@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import {
   CreateGroupButton,
@@ -15,51 +15,9 @@ import ToggleButton from "@components/ToggleButton/ToggleButton";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 
 const CreateGroupPage = () => {
-  const introInputRef = useRef(null);
-
-  const [introInputFocused, setIntroInputFocused] = useState(false);
-
-  const [groupIntroduction, setGroupIntroduction] = useState("");
-
   const [privacyText, setPrivacyText] = useState("비공개");
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        introInputRef.current &&
-        !introInputRef.current.contains(e.target) &&
-        e.target !== introInputRef.current
-      ) {
-        setIntroInputFocused(false);
-      }
-    };
-
-    const handleInputFocusBlur = (e) => {
-      if (e.target === introInputRef.current) {
-        setIntroInputFocused(e.type === "focus");
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("focus", handleInputFocusBlur, true);
-    document.addEventListener("blur", handleInputFocusBlur, true);
-
-    return () => {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("focus", handleInputFocusBlur, true);
-      document.addEventListener("blur", handleInputFocusBlur, true);
-    };
-  }, [introInputRef]);
-
   const MAX_INTRO_WORDS = 200;
-
-  const handleGroupIntroduction = (e) => {
-    const { value } = e.target;
-
-    if (value.length <= MAX_INTRO_WORDS) {
-      setGroupIntroduction(value);
-    }
-  };
 
   const handlePrivacyText = () => {
     setPrivacyText((prev) => (prev === "비공개" ? "공개" : "비공개"));
@@ -84,12 +42,7 @@ const CreateGroupPage = () => {
         <TextAreaModule
           title="그룹 소개"
           placeholderContent="그룹을 소개해주세요"
-          maxWords={200}
-          taregtRef={introInputRef}
-          textAreaContent={groupIntroduction}
-          handleTextAreaContent={handleGroupIntroduction}
-          targetInputFocused={introInputFocused}
-          setTargetInputFocused={setIntroInputFocused}
+          maxWords={MAX_INTRO_WORDS}
         />
 
         <ToggleButton
