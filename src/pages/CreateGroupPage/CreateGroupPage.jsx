@@ -3,14 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   CreateGroupButton,
   CreateGroupPageContainer,
-  CreateGroupSubTitle,
   CreateGroupTitle,
-  GroupModuleContainer,
-  InputErrorMessage,
-  PasswordInput,
-  PasswordInputContainer,
-  PasswordVisibleButton,
-  StyledEyeIcon,
 } from "./CreateGroupPage.styled";
 
 import Header from "@layout/Header/Header";
@@ -19,16 +12,15 @@ import TextInputModule from "@components/Input/Text/TextInputModule";
 import FileInputModule from "@components/Input/File/FileInputModule";
 import TextAreaModule from "@components/Input/TextArea/TextAreaModule";
 import ToggleButton from "@components/ToggleButton/ToggleButton";
+import PasswordInput from "@components/Input/Password/PasswordInput";
 
 const CreateGroupPage = () => {
   const nameInputRef = useRef(null);
   const groupImageRef = useRef(null);
   const introInputRef = useRef(null);
-  const passwordInputRef = useRef(null);
 
   const [nameInputFocused, setNameInputFocused] = useState(false);
   const [introInputFocused, setIntroInputFocused] = useState(false);
-  const [passwordInputFocused, setPasswordInputFocused] = useState(false);
 
   const [groupNameValue, setGroupNameValue] = useState("");
   const [validInputMessage, setValidInputMessage] = useState("");
@@ -39,10 +31,6 @@ const CreateGroupPage = () => {
   const [groupIntroduction, setGroupIntroduction] = useState("");
 
   const [privacyText, setPrivacyText] = useState("비공개");
-
-  const [password, setPassword] = useState("");
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -61,14 +49,6 @@ const CreateGroupPage = () => {
       ) {
         setIntroInputFocused(false);
       }
-
-      if (
-        passwordInputRef.current &&
-        !passwordInputRef.current.contains(e.target) &&
-        e.target !== passwordInputRef.current
-      ) {
-        setPasswordInputFocused(false);
-      }
     };
 
     const handleInputFocusBlur = (e) => {
@@ -78,10 +58,6 @@ const CreateGroupPage = () => {
 
       if (e.target === introInputRef.current) {
         setIntroInputFocused(e.type === "focus");
-      }
-
-      if (e.target === passwordInputRef.current) {
-        setPasswordInputFocused(e.type === "focus");
       }
     };
 
@@ -148,30 +124,6 @@ const CreateGroupPage = () => {
     setPrivacyText((prev) => (prev === "비공개" ? "공개" : "비공개"));
   };
 
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#]).{8,}$/;
-
-  const handlePassWordValidation = (e) => {
-    const newPassword = e.target.value;
-    setPassword(event.target.value);
-
-    if (newPassword === "") {
-      setPasswordErrorMessage("");
-      return;
-    }
-
-    if (passwordRegex.test(newPassword)) {
-      setPasswordErrorMessage("");
-    } else {
-      setPasswordErrorMessage(
-        "비밀번호는 영문 대문자, 소문자, !@# 중 하나의 특수문자를 포함해야 합니다."
-      );
-    }
-  };
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
   return (
     <>
       <Header />
@@ -217,42 +169,10 @@ const CreateGroupPage = () => {
           inputID="privacy-setting"
         />
 
-        {/* <GroupPrivacyContainer>
-          <CreateGroupSubTitle>그룹 공개 선택</CreateGroupSubTitle>
-          <GroupPrivacyContent>
-            <GroupPrivacyText>{privacyText}</GroupPrivacyText>
-
-            <PrivacyToggleInput
-              type="checkbox"
-              id="privacy-setting"
-              onChange={handlePrivacyText}
-            />
-            <PrivacyToggleContainer htmlFor="privacy-setting" />
-          </GroupPrivacyContent>
-        </GroupPrivacyContainer> */}
-
-        <GroupModuleContainer>
-          <CreateGroupSubTitle>비밀번호 생성</CreateGroupSubTitle>
-          <PasswordInputContainer
-            $isFocused={passwordInputFocused}
-            $isValid={passwordErrorMessage === ""}
-          >
-            <PasswordInput
-              type={passwordVisible ? "text" : "password"}
-              placeholder="그룹 비밀번호를 생성해주세요"
-              value={password}
-              onChange={handlePassWordValidation}
-              onFocus={() => setPasswordInputFocused(true)}
-              ref={passwordInputRef}
-            />
-            <PasswordVisibleButton onClick={togglePasswordVisibility}>
-              <StyledEyeIcon $passwordVisible={passwordVisible} />
-            </PasswordVisibleButton>
-            <InputErrorMessage $isValid={passwordErrorMessage === ""}>
-              {passwordErrorMessage}
-            </InputErrorMessage>
-          </PasswordInputContainer>
-        </GroupModuleContainer>
+        <PasswordInput
+          title="비밀번호 생성"
+          placeholderContent="그룹 비밀번호를 생성해주세요"
+        />
 
         <CreateGroupButton>만들기</CreateGroupButton>
       </CreateGroupPageContainer>
