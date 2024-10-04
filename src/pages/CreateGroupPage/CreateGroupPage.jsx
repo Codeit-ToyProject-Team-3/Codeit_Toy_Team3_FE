@@ -15,9 +15,9 @@ import ToggleButton from "@components/ToggleButton/ToggleButton";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 
 const CreateGroupPage = () => {
-  const [privacyText, setPrivacyText] = useState("비공개");
-
   const MAX_INTRO_WORDS = 200;
+
+  const [privacyText, setPrivacyText] = useState("비공개");
 
   const handlePrivacyText = () => {
     setPrivacyText((prev) => (prev === "비공개" ? "공개" : "비공개"));
