@@ -7,11 +7,6 @@ import {
   CreateGroupPageContainer,
   CreateGroupSubTitle,
   CreateGroupTitle,
-  FileSelectButton,
-  GroupImageContainer,
-  GroupImageFileName,
-  GroupImageInput,
-  GroupImageValidation,
   GroupIntroductionArea,
   GroupIntroductionContainer,
   GroupIntroductionWordLimit,
@@ -29,6 +24,7 @@ import {
   StyledEyeIcon,
 } from "./CreateGroupPage.styled";
 import TextInputModule from "@components/Input/Text/TextInputModule";
+import FileInputModule from "@components/Input/File/FileInputModule";
 
 const CreateGroupPage = () => {
   const nameInputRef = useRef(null);
@@ -199,30 +195,16 @@ const CreateGroupPage = () => {
           InputErrorMessage={validInputMessage}
         />
 
-        <GroupModuleContainer>
-          <CreateGroupSubTitle>대표 이미지</CreateGroupSubTitle>
-          <GroupImageValidation>
-            <GroupImageContainer $isValid={fileSizeErrorMessage === ""}>
-              <GroupImageInput
-                type="file"
-                accept=".jpg, .jpeg, .png"
-                ref={groupImageRef}
-                onChange={handleGroupImageChange}
-              />
-              <GroupImageFileName
-                placeholder="파일을 선택해주세요"
-                value={groupImageFileName}
-                readOnly
-              />
-              <FileSelectButton onClick={handleFileSelectClick}>
-                파일 선택
-              </FileSelectButton>
-            </GroupImageContainer>
-            <InputErrorMessage $isValid={fileSizeErrorMessage === ""}>
-              {fileSizeErrorMessage}
-            </InputErrorMessage>
-          </GroupImageValidation>
-        </GroupModuleContainer>
+        <FileInputModule
+          title="대표 이미지"
+          errorMessage={fileSizeErrorMessage}
+          targetRef={groupImageRef}
+          handleImageChange={handleGroupImageChange}
+          imageName={groupImageFileName}
+          handleImageSelect={handleFileSelectClick}
+          placeholderContent="파일을 선택해주세요"
+        />
+
 
         <GroupModuleContainer>
           <CreateGroupSubTitle>그룹 소개</CreateGroupSubTitle>

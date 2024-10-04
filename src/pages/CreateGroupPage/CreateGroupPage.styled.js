@@ -94,6 +94,14 @@ export const InputErrorMessage = styled.p`
 `;
 
 // 대표 이미지 Section
+export const GroupImageValidation = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 export const GroupImageContainer = styled.div`
   width: 100%;
   height: 45px;
@@ -190,14 +198,6 @@ export const IntroCharacterCount = styled.p`
 
   ${({ theme }) => theme.fontStyles.Footnote}
   color: ${colors.gray[500]};
-`;
-
-export const GroupImageValidation = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 `;
 
 export const GroupIntroductionArea = styled.textarea`
