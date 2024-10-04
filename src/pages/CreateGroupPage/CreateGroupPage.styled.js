@@ -34,7 +34,6 @@ export const GroupModuleContainer = styled.div`
 `;
 
 // 그룹명 Section
-
 export const GroupNameInputContainer = styled.div`
   width: 100%;
   position: relative;
@@ -157,6 +156,14 @@ export const FileSelectButton = styled.button`
 `;
 
 // 그룹 소개 Section
+export const GroupIntroductionWordLimit = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 export const GroupIntroductionContainer = styled.div`
   width: 100%;
   height: 120px;
@@ -184,22 +191,6 @@ export const GroupIntroductionContainer = styled.div`
   }
 `;
 
-export const GroupIntroductionWordLimit = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-export const IntroCharacterCount = styled.p`
-  align-self: flex-end;
-  margin-right: 5px;
-
-  ${({ theme }) => theme.fontStyles.Footnote}
-  color: ${colors.gray[500]};
-`;
-
 export const GroupIntroductionArea = styled.textarea`
   width: 100%;
   height: 120px;
@@ -222,8 +213,15 @@ export const GroupIntroductionArea = styled.textarea`
   }
 `;
 
-// 그룹 공개 선택 Section
+export const IntroCharacterCount = styled.p`
+  align-self: flex-end;
+  margin-right: 5px;
 
+  ${({ theme }) => theme.fontStyles.Footnote}
+  color: ${colors.gray[500]};
+`;
+
+// 그룹 공개 선택 Section
 export const GroupPrivacyContainer = styled(GroupModuleContainer)`
   gap: 20px;
 `;

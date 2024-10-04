@@ -1,27 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 
-import Header from "@layout/Header/Header";
-
 import {
   CreateGroupButton,
   CreateGroupPageContainer,
   CreateGroupSubTitle,
   CreateGroupTitle,
   GroupModuleContainer,
-  GroupPrivacyContainer,
-  GroupPrivacyContent,
-  GroupPrivacyText,
   InputErrorMessage,
   PasswordInput,
   PasswordInputContainer,
   PasswordVisibleButton,
-  PrivacyToggleContainer,
-  PrivacyToggleInput,
   StyledEyeIcon,
 } from "./CreateGroupPage.styled";
+
+import Header from "@layout/Header/Header";
+
 import TextInputModule from "@components/Input/Text/TextInputModule";
 import FileInputModule from "@components/Input/File/FileInputModule";
 import TextAreaModule from "@components/Input/TextArea/TextAreaModule";
+import ToggleButton from "@components/ToggleButton/ToggleButton";
 
 const CreateGroupPage = () => {
   const nameInputRef = useRef(null);
@@ -213,27 +210,14 @@ const CreateGroupPage = () => {
           setTargetInputFocused={setIntroInputFocused}
         />
 
-        {/* <GroupModuleContainer>
-          <CreateGroupSubTitle>그룹 소개</CreateGroupSubTitle>
-          <GroupIntroductionWordLimit>
-            <GroupIntroductionContainer $isFocused={introInputFocused}>
-              <GroupIntroductionArea
-                type="text"
-                placeholder="그룹을 소개해주세요"
-                maxLength={MAX_INTRO_WORDS}
-                value={groupIntroduction}
-                ref={introInputRef}
-                onChange={handleGroupIntroduction}
-                onFocus={() => setIntroInputFocused(true)}
-              />
-            </GroupIntroductionContainer>
-            <IntroCharacterCount>
-              {groupIntroduction.length}/{MAX_INTRO_WORDS} character
-            </IntroCharacterCount>
-          </GroupIntroductionWordLimit>
-        </GroupModuleContainer> */}
+        <ToggleButton
+          title="그룹 공개 선택"
+          stateText={privacyText}
+          handleStateText={handlePrivacyText}
+          inputID="privacy-setting"
+        />
 
-        <GroupPrivacyContainer>
+        {/* <GroupPrivacyContainer>
           <CreateGroupSubTitle>그룹 공개 선택</CreateGroupSubTitle>
           <GroupPrivacyContent>
             <GroupPrivacyText>{privacyText}</GroupPrivacyText>
@@ -245,7 +229,7 @@ const CreateGroupPage = () => {
             />
             <PrivacyToggleContainer htmlFor="privacy-setting" />
           </GroupPrivacyContent>
-        </GroupPrivacyContainer>
+        </GroupPrivacyContainer> */}
 
         <GroupModuleContainer>
           <CreateGroupSubTitle>비밀번호 생성</CreateGroupSubTitle>
