@@ -15,13 +15,9 @@ import ToggleButton from "@components/ToggleButton/ToggleButton";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 
 const CreateGroupPage = () => {
-  const groupImageRef = useRef(null);
   const introInputRef = useRef(null);
 
   const [introInputFocused, setIntroInputFocused] = useState(false);
-
-  const [groupImageFileName, setGroupImageFileName] = useState("");
-  const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
 
   const [groupIntroduction, setGroupIntroduction] = useState("");
 
@@ -55,31 +51,6 @@ const CreateGroupPage = () => {
     };
   }, [introInputRef]);
 
-  const MAX_FILE_SIZE = 2 * 1024 * 1024;
-
-  const handleGroupImageChange = (e) => {
-    const selectedFile = e.target.files[0];
-
-    if (selectedFile && selectedFile.size > MAX_FILE_SIZE) {
-      setFileSizeErrorMessage(
-        "파일 용량이 2MB를 초과했습니다. 다른 파일을 선택해주세요."
-      );
-
-      e.target.files = null;
-      setGroupImageFileName("");
-    } else {
-      setFileSizeErrorMessage("");
-
-      if (e.target.files.length > 0) {
-        setGroupImageFileName(e.target.files[0].name);
-      }
-    }
-  };
-
-  const handleFileSelectClick = () => {
-    groupImageRef.current.click();
-  };
-
   const MAX_INTRO_WORDS = 200;
 
   const handleGroupIntroduction = (e) => {
@@ -107,11 +78,6 @@ const CreateGroupPage = () => {
 
         <FileInputModule
           title="대표 이미지"
-          errorMessage={fileSizeErrorMessage}
-          targetRef={groupImageRef}
-          handleImageChange={handleGroupImageChange}
-          imageName={groupImageFileName}
-          handleImageSelect={handleFileSelectClick}
           placeholderContent="파일을 선택해주세요"
         />
 
