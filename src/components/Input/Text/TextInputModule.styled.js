@@ -1,5 +1,5 @@
-import { colors } from "@styles/theme/colors";
 import styled from "styled-components";
+import { colors } from "@styles/theme/colors";
 
 export const TextInputWrapper = styled.div`
   width: 400px;
