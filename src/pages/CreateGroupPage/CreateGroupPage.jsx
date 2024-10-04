@@ -15,15 +15,10 @@ import ToggleButton from "@components/ToggleButton/ToggleButton";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 
 const CreateGroupPage = () => {
-  const nameInputRef = useRef(null);
   const groupImageRef = useRef(null);
   const introInputRef = useRef(null);
 
-  const [nameInputFocused, setNameInputFocused] = useState(false);
   const [introInputFocused, setIntroInputFocused] = useState(false);
-
-  const [groupNameValue, setGroupNameValue] = useState("");
-  const [validInputMessage, setValidInputMessage] = useState("");
 
   const [groupImageFileName, setGroupImageFileName] = useState("");
   const [fileSizeErrorMessage, setFileSizeErrorMessage] = useState("");
@@ -35,14 +30,6 @@ const CreateGroupPage = () => {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
-        nameInputRef.current &&
-        !nameInputRef.current.contains(e.target) &&
-        e.target !== nameInputRef.current
-      ) {
-        setNameInputFocused(false);
-      }
-
-      if (
         introInputRef.current &&
         !introInputRef.current.contains(e.target) &&
         e.target !== introInputRef.current
@@ -52,10 +39,6 @@ const CreateGroupPage = () => {
     };
 
     const handleInputFocusBlur = (e) => {
-      if (e.target === nameInputRef.current) {
-        setNameInputFocused(e.type === "focus");
-      }
-
       if (e.target === introInputRef.current) {
         setIntroInputFocused(e.type === "focus");
       }
@@ -70,20 +53,7 @@ const CreateGroupPage = () => {
       document.addEventListener("focus", handleInputFocusBlur, true);
       document.addEventListener("blur", handleInputFocusBlur, true);
     };
-  }, [nameInputRef, introInputRef]);
-
-  const handleGroupNameValue = (e) => {
-    const inputValue = e.target.value;
-    setGroupNameValue(inputValue);
-
-    const isValid = /^[a-zA-Z가-힣0-9!@#$%^_]*$/.test(inputValue);
-
-    if (isValid) {
-      setValidInputMessage("");
-    } else {
-      setValidInputMessage("특수문자는 !@#$%^_만 사용하실 수 있습니다.");
-    }
-  };
+  }, [introInputRef]);
 
   const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
@@ -129,16 +99,10 @@ const CreateGroupPage = () => {
       <Header />
       <CreateGroupPageContainer>
         <CreateGroupTitle>그룹 만들기</CreateGroupTitle>
+
         <TextInputModule
           title="그룹명"
-          taregtInputFocused={nameInputFocused}
-          errorMessage={validInputMessage}
-          setTargetInputFocused={setNameInputFocused}
-          targetRef={nameInputRef}
-          targetInputValue={groupNameValue}
-          handleTargetInputValue={handleGroupNameValue}
           placeholderContent="그룹명을 입력해주세요"
-          InputErrorMessage={validInputMessage}
         />
 
         <FileInputModule
