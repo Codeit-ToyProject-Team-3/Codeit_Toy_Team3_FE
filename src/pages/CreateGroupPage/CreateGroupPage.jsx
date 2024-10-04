@@ -7,15 +7,11 @@ import {
   CreateGroupPageContainer,
   CreateGroupSubTitle,
   CreateGroupTitle,
-  GroupIntroductionArea,
-  GroupIntroductionContainer,
-  GroupIntroductionWordLimit,
   GroupModuleContainer,
   GroupPrivacyContainer,
   GroupPrivacyContent,
   GroupPrivacyText,
   InputErrorMessage,
-  IntroCharacterCount,
   PasswordInput,
   PasswordInputContainer,
   PasswordVisibleButton,
@@ -25,6 +21,7 @@ import {
 } from "./CreateGroupPage.styled";
 import TextInputModule from "@components/Input/Text/TextInputModule";
 import FileInputModule from "@components/Input/File/FileInputModule";
+import TextAreaModule from "@components/Input/TextArea/TextAreaModule";
 
 const CreateGroupPage = () => {
   const nameInputRef = useRef(null);
@@ -205,8 +202,18 @@ const CreateGroupPage = () => {
           placeholderContent="파일을 선택해주세요"
         />
 
+        <TextAreaModule
+          title="그룹 소개"
+          placeholderContent="그룹을 소개해주세요"
+          maxWords={200}
+          taregtRef={introInputRef}
+          textAreaContent={groupIntroduction}
+          handleTextAreaContent={handleGroupIntroduction}
+          targetInputFocused={introInputFocused}
+          setTargetInputFocused={setIntroInputFocused}
+        />
 
-        <GroupModuleContainer>
+        {/* <GroupModuleContainer>
           <CreateGroupSubTitle>그룹 소개</CreateGroupSubTitle>
           <GroupIntroductionWordLimit>
             <GroupIntroductionContainer $isFocused={introInputFocused}>
@@ -224,7 +231,7 @@ const CreateGroupPage = () => {
               {groupIntroduction.length}/{MAX_INTRO_WORDS} character
             </IntroCharacterCount>
           </GroupIntroductionWordLimit>
-        </GroupModuleContainer>
+        </GroupModuleContainer> */}
 
         <GroupPrivacyContainer>
           <CreateGroupSubTitle>그룹 공개 선택</CreateGroupSubTitle>
