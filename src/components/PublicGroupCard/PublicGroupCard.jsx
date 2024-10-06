@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
+
 import {
   GroupCardFooter,
   GroupCardFooterModule,
@@ -15,7 +17,6 @@ import {
 
 import Header from "@layout/Header/Header";
 import Pagination from "@components/Pagination/Pagination";
-import { useNavigate } from "react-router-dom";
 
 const PublicGroupCard = ({ publicGroupList, listTotalPage }) => {
   const navigate = useNavigate();

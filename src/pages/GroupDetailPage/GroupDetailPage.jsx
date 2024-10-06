@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import {
   CreateGroupMemoryButton,
@@ -12,9 +13,30 @@ import Header from "@layout/Header/Header";
 
 import GroupDetailCard from "@components/GroupDetailCard/GroupDetailCard";
 import GroupSearchBar from "@layout/GroupSearchBar/GroupSearchBar";
+import PublicMemoeryCard from "@components/GroupMemoryCard/PublicMemoryCard";
 
 const GroupDetailPage = () => {
   const [privacyMemory, setPrivacyMemory] = useState("공개");
+  const [groupMemoryList, setGroupMemoryList] = useState([]);
+  const [groupMemoryTotalPage, setGroupMemoryTotalPage] = useState([]);
+
+  useEffect(() => {
+    const fetchGroupMemoryCardInfos = async () => {
+      try {
+        const response = await axios.get("/data/memoryList.json");
+        const fetchedMemoryInfos = response.data;
+
+        console.log(fetchedMemoryInfos);
+
+        setGroupMemoryList(fetchedMemoryInfos.data);
+        setGroupMemoryTotalPage(fetchedMemoryInfos.totalPages);
+      } catch (error) {
+        console.error("Error occured: ", error);
+      }
+    };
+
+    fetchGroupMemoryCardInfos();
+  }, []);
 
   return (
     <>
@@ -30,6 +52,12 @@ const GroupDetailPage = () => {
           privacyCategory={privacyMemory}
           setPrivacyCategory={setPrivacyMemory}
         />
+        {privacyMemory === "공개" ? (
+          <PublicMemoeryCard
+            groupMemoryList={groupMemoryList}
+            listTotalPage={groupMemoryTotalPage}
+          />
+        ) : null}
       </GroupDetailPageContainer>
     </>
   );
