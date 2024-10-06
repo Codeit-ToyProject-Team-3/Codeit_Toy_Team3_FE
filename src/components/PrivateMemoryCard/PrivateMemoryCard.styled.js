@@ -4,7 +4,7 @@ import { colors } from "@styles/theme/colors";
 import likeIcon from "@assets/group_like-icon.svg?react";
 import commentIcon from "@assets/comment-icon.svg?react";
 
-export const PublicGroupListWrapper = styled.div`
+export const PrivateMemoryListWrapper = styled.div`
   width: 100%;
   margin-top: 60px;
   margin-bottom: 60px;
@@ -15,7 +15,7 @@ export const PublicGroupListWrapper = styled.div`
   gap: 60px;
 `;
 
-export const PublicGroupListContainer = styled.div`
+export const PrivateMemoryListContainer = styled.div`
   width: 100%;
 
   display: grid;
@@ -24,14 +24,14 @@ export const PublicGroupListContainer = styled.div`
   gap: 20px;
 `;
 
-export const PublicGroupCardContainer = styled.div`
+export const PrivateMemoryCardContainer = styled.div`
   width: 375px;
-  height: 561px;
+  height: 142px;
   padding: 20px;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   gap: 20px;
 
   border-radius: 12px;
@@ -42,18 +42,8 @@ export const PublicGroupCardContainer = styled.div`
   cursor: pointer;
 `;
 
-export const PublicGroupImage = styled.img`
+export const PrivateMemoryContentContainer = styled.div`
   width: 100%;
-  height: 335px;
-
-  border-radius: 6px;
-
-  background-color: ${colors.gray[50]};
-`;
-
-export const PublicGroupContentContainer = styled.div`
-  width: 100%;
-  flex-grow: 1;
 
   display: flex;
   flex-direction: column;
@@ -62,7 +52,7 @@ export const PublicGroupContentContainer = styled.div`
   color: ${colors.black};
 `;
 
-export const GroupCardHeader = styled.div`
+export const MemoryCardHeader = styled.div`
   width: 100%;
 
   display: flex;
@@ -82,7 +72,7 @@ export const GroupCardHeader = styled.div`
   }
 `;
 
-export const GroupCardMainContent = styled.div`
+export const MemoryCardMainContent = styled.div`
   width: 100%;
   flex-grow: 1;
 
@@ -112,11 +102,10 @@ export const MemoryTagList = styled.div`
   }
 `;
 
-export const GroupCardFooter = styled.div`
+export const MemoryCardFooter = styled.div`
   width: 100%;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
 `;
 

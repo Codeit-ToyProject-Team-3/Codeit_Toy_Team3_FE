@@ -13,7 +13,8 @@ import Header from "@layout/Header/Header";
 
 import GroupDetailCard from "@components/GroupDetailCard/GroupDetailCard";
 import GroupSearchBar from "@layout/GroupSearchBar/GroupSearchBar";
-import PublicMemoeryCard from "@components/GroupMemoryCard/PublicMemoryCard";
+import PublicMemoeryCard from "@components/PublicMemoryCard/PublicMemoryCard";
+import PrivateMemoryCard from "@components/PrivateMemoryCard/PrivateMemoryCard";
 
 const GroupDetailPage = () => {
   const [privacyMemory, setPrivacyMemory] = useState("공개");
@@ -24,19 +25,24 @@ const GroupDetailPage = () => {
     const fetchGroupMemoryCardInfos = async () => {
       try {
         const response = await axios.get("/data/memoryList.json");
-        const fetchedMemoryInfos = response.data;
+        const fetchedMemoryList = response.data;
+        const fetchedMemoryInfo = fetchedMemoryList.data;
 
-        console.log(fetchedMemoryInfos);
+        console.log(fetchedMemoryList);
 
-        setGroupMemoryList(fetchedMemoryInfos.data);
-        setGroupMemoryTotalPage(fetchedMemoryInfos.totalPages);
+        const filteredMemoryInfos = fetchedMemoryInfo.filter(
+          (memory) => memory?.isPublic === privacyMemory
+        );
+
+        setGroupMemoryList(filteredMemoryInfos);
+        setGroupMemoryTotalPage(fetchedMemoryList.totalPages);
       } catch (error) {
         console.error("Error occured: ", error);
       }
     };
 
     fetchGroupMemoryCardInfos();
-  }, []);
+  }, [privacyMemory]);
 
   return (
     <>
@@ -57,7 +63,12 @@ const GroupDetailPage = () => {
             groupMemoryList={groupMemoryList}
             listTotalPage={groupMemoryTotalPage}
           />
-        ) : null}
+        ) : (
+          <PrivateMemoryCard
+            groupMemoryList={groupMemoryList}
+            listTotalPage={groupMemoryTotalPage}
+          />
+        )}
       </GroupDetailPageContainer>
     </>
   );

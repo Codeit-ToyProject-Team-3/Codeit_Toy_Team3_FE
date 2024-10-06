@@ -2,18 +2,18 @@
 import { useNavigate } from "react-router-dom";
 
 import {
-  GroupCardFooter,
-  GroupCardHeader,
-  GroupCardMainContent,
   LikeCommentModule,
+  MemoryCardFooter,
+  MemoryCardHeader,
+  MemoryCardMainContent,
   MemoryLikeCommentContainer,
   MemoryLoactionDate,
   MemoryTagList,
-  PublicGroupCardContainer,
-  PublicGroupContentContainer,
-  PublicGroupImage,
-  PublicGroupListContainer,
-  PublicGroupListWrapper,
+  PublicMemoryCardContainer,
+  PublicMemoryContentContainer,
+  PublicMemoryImage,
+  PublicMemoryListContainer,
+  PublicMemoryListWrapper,
   StyledCommentIcon,
   StyledLikeIcon,
 } from "./PublicMemoryCard.styled";
@@ -28,26 +28,26 @@ const PublicMemoeryCard = ({ groupMemoryList, listTotalPage }) => {
   };
 
   return (
-    <PublicGroupListWrapper>
-      <PublicGroupListContainer>
+    <PublicMemoryListWrapper>
+      <PublicMemoryListContainer>
         {groupMemoryList?.map((groupMemory) => (
-          <PublicGroupCardContainer
+          <PublicMemoryCardContainer
             key={groupMemory?.id}
             onClick={() => handleGroupClick(groupMemory?.id)}
           >
-            <PublicGroupImage
+            <PublicMemoryImage
               src={groupMemory?.imageUrl}
               alt={groupMemory?.title}
             />
-            <PublicGroupContentContainer>
-              <GroupCardHeader>
+            <PublicMemoryContentContainer>
+              <MemoryCardHeader>
                 <h3 className="nickname">{groupMemory?.nickname}</h3>
                 <span className="divider">|</span>
                 <h3 className="privacy-bound">
                   {groupMemory?.isPublic ? "공개" : "비공개"}
                 </h3>
-              </GroupCardHeader>
-              <GroupCardMainContent>
+              </MemoryCardHeader>
+              <MemoryCardMainContent>
                 <h3 className="title">{groupMemory?.title}</h3>
                 <MemoryTagList>
                   {groupMemory?.tags?.map((tag, index) => (
@@ -56,8 +56,8 @@ const PublicMemoeryCard = ({ groupMemoryList, listTotalPage }) => {
                     </p>
                   ))}
                 </MemoryTagList>
-              </GroupCardMainContent>
-              <GroupCardFooter>
+              </MemoryCardMainContent>
+              <MemoryCardFooter>
                 <MemoryLoactionDate>
                   <h5 className="location">{groupMemory?.location}</h5>
                   <span>﹒</span>
@@ -73,13 +73,13 @@ const PublicMemoeryCard = ({ groupMemoryList, listTotalPage }) => {
                     {groupMemory?.commentCount}
                   </LikeCommentModule>
                 </MemoryLikeCommentContainer>
-              </GroupCardFooter>
-            </PublicGroupContentContainer>
-          </PublicGroupCardContainer>
+              </MemoryCardFooter>
+            </PublicMemoryContentContainer>
+          </PublicMemoryCardContainer>
         ))}
-      </PublicGroupListContainer>
+      </PublicMemoryListContainer>
       <Pagination groupList={groupMemoryList} totalPages={listTotalPage} />
-    </PublicGroupListWrapper>
+    </PublicMemoryListWrapper>
   );
 };
 
