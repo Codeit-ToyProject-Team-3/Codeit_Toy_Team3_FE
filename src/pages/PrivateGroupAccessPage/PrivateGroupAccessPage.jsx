@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   AccessPageContainer,
   AccessPageContent,
@@ -8,17 +9,15 @@ import {
 import Header from "@layout/Header/Header";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 
-const PrivateGroupAccessPage = () => {
+const PrivateGroupAccessPage = ({ title, description }) => {
   return (
     <>
       <Header />
       <AccessPageContainer>
         <AccessPageContent>
           <AccessPageHeader>
-            <h2 className="title">비공개 그룹</h2>
-            <h3 className="sub-title">
-              비공개 그룹에 접근하기 위해 권한 확인이 필요합니다.
-            </h3>
+            <h2 className="title">{title}</h2>
+            <h3 className="sub-title">{description}</h3>
           </AccessPageHeader>
           <PasswordInput
             title="비밀번호 입력"

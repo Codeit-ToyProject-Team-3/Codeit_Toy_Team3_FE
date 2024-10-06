@@ -22,7 +22,7 @@ const PrivateGroupCard = ({ privateGroupList, listTotalPage }) => {
   const navigate = useNavigate();
 
   const handleGroupClick = (id) => {
-    navigate(`/group/${id}/verify-password`);
+    navigate(`/groups/${id}/verify-password`);
   };
 
   return (

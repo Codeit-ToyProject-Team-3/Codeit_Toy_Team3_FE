@@ -21,7 +21,7 @@ const PrivateMemoryCard = ({ groupMemoryList, listTotalPage }) => {
   const navigate = useNavigate();
 
   const handleGroupClick = (id) => {
-    navigate(`/posts/${id}`);
+    navigate(`/posts/${id}/verify-password`);
   };
 
   return (

@@ -12,8 +12,22 @@ function App() {
       <Route path="/groups/:id" element={<GroupDetailPage />} />
       <Route path="/create-group" element={<CreateGroupPage />} />
       <Route
-        path="/group/:id/verify-password"
-        element={<PrivateGroupAccessPage />}
+        path="/groups/:id/verify-password"
+        element={
+          <PrivateGroupAccessPage
+            title="비공개 그룹"
+            description="비공개 그룹에 접근하기 위해 권한 확인이 필요합니다."
+          />
+        }
+      />
+      <Route
+        path="/posts/:id/verify-password"
+        element={
+          <PrivateGroupAccessPage
+            title="비공개 추억"
+            description="비공개 추억에 접근하기 위해 권한 확인이 필요합니다."
+          />
+        }
       />
     </Routes>
   );
