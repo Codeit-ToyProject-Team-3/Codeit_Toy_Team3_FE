@@ -17,7 +17,7 @@ import HashtagInput from "@components/Input/HashTag/HashTagInput";
 import ToggleButton from "@components/ToggleButton/ToggleButton";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 import DateInputModule from "@components/Input/Date/DateInputModule";
-import MemoryPostAccessModal from "@components/MemoryPostAccessModal/MemoryPostAccessModal";
+import ModalCustom from "@components/ModalCustom/ModalCustom";
 
 const CreateMemoryPage = () => {
   const MAX_DESCRIPTION_WORDS = 400;
@@ -91,9 +91,13 @@ const CreateMemoryPage = () => {
         <CreateMemoryButton onClick={handleModalOpen}>
           올리기
         </CreateMemoryButton>
-        <MemoryPostAccessModal
+        <ModalCustom
           modalOpen={isModalOpen}
           handleModalClose={handleModalClose}
+          modalTitle="추억 올리기"
+          passworTitle="올리기 권한 인증"
+          passwordPlaceholder="그룹 비밀번호를 입력해주세요"
+          submitButtonText="제출하기"
         />
       </CreateMemoryPageContainer>
     </>

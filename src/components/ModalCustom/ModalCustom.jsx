@@ -4,7 +4,7 @@ import {
   ModalContent,
   PostSubmitButton,
   StyledCloseIcon,
-} from "./MemoryPostAccessModal.styled";
+} from "./ModalCustom.styled";
 
 import PasswordInput from "@components/Input/Password/PasswordInput";
 
@@ -34,7 +34,14 @@ const StyledBackdrop = styled(Backdrop).withConfig({
   -webkit-tap-highlight-color: transparent; // 모바일 및 터치 기반 웹 브라우저에서 터치 요소를 클릭할 때 나타나는 하이라이트 효과를 제어 (여기선 필요 없음)
 `;
 
-const MemoryPostAccessModal = ({ modalOpen, handleModalClose }) => {
+const ModalCustom = ({
+  modalOpen,
+  handleModalClose,
+  modalTitle,
+  passworTitle,
+  passwordPlaceholder,
+  submitButtonText,
+}) => {
   return (
     <Modal
       open={modalOpen}
@@ -42,16 +49,16 @@ const MemoryPostAccessModal = ({ modalOpen, handleModalClose }) => {
       slots={{ backdrop: StyledBackdrop }}
     >
       <ModalContent>
-        <h2 className="modal-title">추억 올리기</h2>
+        <h2 className="modal-title">{modalTitle}</h2>
         <StyledCloseIcon onClick={handleModalClose} />
         <PasswordInput
-          title="올리기 권한 인증"
-          placeholderContent="그룹 비밀번호를 입력해주세요"
+          title={passworTitle}
+          placeholderContent={passwordPlaceholder}
         />
-        <PostSubmitButton>제출하기</PostSubmitButton>
+        <PostSubmitButton>{submitButtonText}</PostSubmitButton>
       </ModalContent>
     </Modal>
   );
 };
 
-export default MemoryPostAccessModal;
+export default ModalCustom;

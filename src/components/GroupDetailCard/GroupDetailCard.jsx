@@ -22,6 +22,7 @@ import {
 } from "./GroupDetailCard.styled";
 
 import { GroupCardHeader } from "@components/PublicGroupCard/PublicGroupCard.styled";
+import ModalCustom from "@components/ModalCustom/ModalCustom";
 
 const GroupDetailCard = () => {
   const { id } = useParams();
@@ -29,6 +30,16 @@ const GroupDetailCard = () => {
   const numID = parseInt(id, 10);
 
   const [groupDetail, setGroupDetail] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     const fetchGroupDetail = async () => {
@@ -64,7 +75,17 @@ const GroupDetailCard = () => {
             </GroupCardHeader>
             <GroupManagement>
               <button className="edit">그룹 정보 수정하기</button>
-              <button className="delete">그룹 삭제하기</button>
+              <button className="delete" onClick={handleModalOpen}>
+                그룹 삭제하기
+              </button>
+              <ModalCustom
+                modalOpen={isModalOpen}
+                handleModalClose={handleModalClose}
+                modalTitle="그룹 삭제"
+                passworTitle="삭제 권한 인증"
+                passwordPlaceholder="그룹 비밀번호를 입력해주세요"
+                submitButtonText="삭제하기"
+              />
             </GroupManagement>
           </GroupDetailHeader>
           <GroupDetailMain>
