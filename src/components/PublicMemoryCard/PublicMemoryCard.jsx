@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -20,17 +21,28 @@ import {
 
 import Pagination from "@components/Pagination/Pagination";
 
-const PublicMemoeryCard = ({ groupMemoryList, listTotalPage }) => {
+const PublicMemoryCard = ({ groupMemoryList }) => {
   const navigate = useNavigate();
 
   const handleGroupClick = (id) => {
     navigate(`/posts/${id}`);
   };
 
+  const itemsPerPage = 6;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = groupMemoryList?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
   return (
     <PublicMemoryListWrapper>
       <PublicMemoryListContainer>
-        {groupMemoryList?.map((groupMemory) => (
+        {currentItems?.map((groupMemory) => (
           <PublicMemoryCardContainer
             key={groupMemory?.id}
             onClick={() => handleGroupClick(groupMemory?.id)}
@@ -78,9 +90,14 @@ const PublicMemoeryCard = ({ groupMemoryList, listTotalPage }) => {
           </PublicMemoryCardContainer>
         ))}
       </PublicMemoryListContainer>
-      <Pagination groupList={groupMemoryList} totalPages={listTotalPage} />
+      <Pagination
+        groupList={groupMemoryList}
+        totalPages={Math.floor(groupMemoryList?.length / itemsPerPage) + 1}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </PublicMemoryListWrapper>
   );
 };
 
-export default PublicMemoeryCard;
+export default PublicMemoryCard;
