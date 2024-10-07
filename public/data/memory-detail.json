@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "groupId": 2,
+    "nickname": "달봉 아이들",
+    "title": "인천 앞바다에서 무려 60cm 월척을 낚다!",
+    "content": "Hi",
+    "imageUrl": "http://localhost:3000/image_upload/sample-post-image.png",
+    "tags": ["인천", "낚시"],
+    "location": "인천 앞바다",
+    "moment": "24.01.19",
+    "isPublic": "비공개",
+    "likeCount": 123,
+    "commentCount": 19,
+    "createdAt": "2024-09-27T20:26:42.000Z"
+  }
+]
