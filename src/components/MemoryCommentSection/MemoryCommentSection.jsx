@@ -34,7 +34,7 @@ const MemoryCommentSection = ({ memoryDetail }) => {
     <MemoryCommentSectionContainer>
       <RegisterCommentButton>댓글 등록하기</RegisterCommentButton>
       <CommentContainer>
-        <h4>댓글 {memoryDetail?.commentCount}</h4>
+        <h4>댓글 {memoryDetail?.comments?.length}</h4>
         <CommentDivider />
         <CommentList>
           {currentItems?.map((comment) => (
