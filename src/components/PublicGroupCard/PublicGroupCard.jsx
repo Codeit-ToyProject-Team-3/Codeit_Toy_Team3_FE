@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
+
 import {
   GroupCardFooter,
   GroupCardFooterModule,
@@ -17,13 +19,22 @@ import Header from "@layout/Header/Header";
 import Pagination from "@components/Pagination/Pagination";
 
 const PublicGroupCard = ({ publicGroupList, listTotalPage }) => {
+  const navigate = useNavigate();
+
+  const handleGroupClick = (id) => {
+    navigate(`groups/${id}`);
+  };
+
   return (
     <>
       <Header />
       <PublicGroupListWrapper>
         <PublicGroupListContainer>
           {publicGroupList?.map((publicGroup) => (
-            <PublicGroupCardContainer key={publicGroup?.id}>
+            <PublicGroupCardContainer
+              key={publicGroup?.id}
+              onClick={() => handleGroupClick(publicGroup?.id)}
+            >
               <PublicGroupImage
                 src={publicGroup?.imageUrl}
                 alt={publicGroup?.name}
