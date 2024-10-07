@@ -4,12 +4,12 @@ import {
   AccessPageContent,
   AccessPageHeader,
   PasswordSubmitButton,
-} from "./PrivateGroupAccessPage.styled";
+} from "./PrivateAccessPage.styled";
 
 import Header from "@layout/Header/Header";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 
-const PrivateGroupAccessPage = ({ title, description }) => {
+const PrivateAccessPage = ({ title, description }) => {
   return (
     <>
       <Header />
@@ -30,4 +30,4 @@ const PrivateGroupAccessPage = ({ title, description }) => {
   );
 };
 
-export default PrivateGroupAccessPage;
+export default PrivateAccessPage;

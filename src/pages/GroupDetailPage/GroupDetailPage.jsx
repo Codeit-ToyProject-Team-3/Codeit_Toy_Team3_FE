@@ -63,7 +63,9 @@ const GroupDetailPage = () => {
         <GroupDetailDivider />
         <GroupMemoryHeader>
           <GroupMemorySectionTitle>추억 목록</GroupMemorySectionTitle>
-          <CreateGroupMemoryButton>추억 올리기</CreateGroupMemoryButton>
+          <Link to="/create-memory">
+            <CreateGroupMemoryButton>추억 올리기</CreateGroupMemoryButton>
+          </Link>
         </GroupMemoryHeader>
         <GroupSearchBar
           privacyCategory={privacyMemory}
@@ -80,7 +82,7 @@ const GroupDetailPage = () => {
             </NoGroupMemoryContainer>
             <Link to="/create-memory">
               <CreateGroupMemoryButtonLarge>
-                그룹 만들기
+                추억 올리기
               </CreateGroupMemoryButtonLarge>
             </Link>
           </>

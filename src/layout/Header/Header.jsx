@@ -9,6 +9,7 @@ const Header = () => {
   const noGroupCreateButtonPages = [
     "/private-access",
     "/create-group",
+    "/create-memory",
     "/groups",
   ];
 
