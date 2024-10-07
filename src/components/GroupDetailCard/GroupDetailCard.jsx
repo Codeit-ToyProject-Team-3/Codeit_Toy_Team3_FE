@@ -22,7 +22,9 @@ import {
 } from "./GroupDetailCard.styled";
 
 import { GroupCardHeader } from "@components/PublicGroupCard/PublicGroupCard.styled";
+
 import ModalCustom from "@components/ModalCustom/ModalCustom";
+import ProfileEditModal from "@components/ProfileEditModal/ProfileEditModal";
 
 const GroupDetailCard = () => {
   const { id } = useParams();
@@ -31,14 +33,23 @@ const GroupDetailCard = () => {
 
   const [groupDetail, setGroupDetail] = useState([]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
+  const handleEditModalOpen = () => {
+    setEditModalOpen(true);
   };
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+  const handleEditModalClose = () => {
+    setEditModalOpen(false);
+  };
+
+  const handleDeleteModalOpen = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setDeleteModalOpen(false);
   };
 
   useEffect(() => {
@@ -74,13 +85,20 @@ const GroupDetailCard = () => {
               <h3 className="privacy-bound">{groupDetail.isPublic}</h3>
             </GroupCardHeader>
             <GroupManagement>
-              <button className="edit">그룹 정보 수정하기</button>
-              <button className="delete" onClick={handleModalOpen}>
+              <button className="edit" onClick={handleEditModalOpen}>
+                그룹 정보 수정하기
+              </button>
+              <ProfileEditModal
+                modalOpen={editModalOpen}
+                handleModalClose={handleEditModalClose}
+              />
+
+              <button className="delete" onClick={handleDeleteModalOpen}>
                 그룹 삭제하기
               </button>
               <ModalCustom
-                modalOpen={isModalOpen}
-                handleModalClose={handleModalClose}
+                modalOpen={deleteModalOpen}
+                handleModalClose={handleDeleteModalClose}
                 modalTitle="그룹 삭제"
                 passworTitle="삭제 권한 인증"
                 passwordPlaceholder="그룹 비밀번호를 입력해주세요"

@@ -24,7 +24,7 @@ const Backdrop = forwardRef((props, ref) => {
   );
 });
 
-const StyledBackdrop = styled(Backdrop).withConfig({
+export const StyledBackdrop = styled(Backdrop).withConfig({
   shouldForwardProp: (prop) => prop !== "ownerState",
 })`
   z-index: -1;
