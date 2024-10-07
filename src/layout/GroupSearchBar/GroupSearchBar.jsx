@@ -15,7 +15,7 @@ import {
   StyledSearchIcon,
 } from "./GroupSearchBar.styled";
 
-const GroupSearchBar = ({ privacyCategory, setPrivacyCategory }) => {
+const GroupSearchBar = ({ privacyCategory, setPrivacyCategory, placeholderContent }) => {
   const dropdownRef = useRef(null);
 
   const [searchContent, setSearchContent] = useState("");
@@ -71,7 +71,7 @@ const GroupSearchBar = ({ privacyCategory, setPrivacyCategory }) => {
             type="text"
             onChange={handleSearchContent}
             value={searchContent}
-            placeholder="그룹명을 검색해 주세요"
+            placeholder={placeholderContent}
           />
         </SearchBar>
         <SortDropdownContainer ref={dropdownRef} onClick={handleDropdownOpen}>

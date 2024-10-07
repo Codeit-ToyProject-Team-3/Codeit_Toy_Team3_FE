@@ -56,6 +56,7 @@ const GroupListPage = () => {
         <GroupSearchBar
           privacyCategory={privacyCategory}
           setPrivacyCategory={setPrivacyCategory}
+          placeholderContent="그룹명을 검색해주세요"
         />
         {isLoading ? (
           <p>Loading...</p>

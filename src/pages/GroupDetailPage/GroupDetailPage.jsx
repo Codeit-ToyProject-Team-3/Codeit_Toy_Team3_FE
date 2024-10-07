@@ -68,6 +68,7 @@ const GroupDetailPage = () => {
         <GroupSearchBar
           privacyCategory={privacyMemory}
           setPrivacyCategory={setPrivacyMemory}
+          placeholderContent="태그 혹은 제목을 입력해주세요"
         />
         {isLoading ? (
           <p>Loading...</p>
