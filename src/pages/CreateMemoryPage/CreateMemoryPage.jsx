@@ -17,11 +17,22 @@ import HashtagInput from "@components/Input/HashTag/HashTagInput";
 import ToggleButton from "@components/ToggleButton/ToggleButton";
 import PasswordInput from "@components/Input/Password/PasswordInput";
 import DateInputModule from "@components/Input/Date/DateInputModule";
+import MemoryPostAccessModal from "@components/MemoryPostAccessModal/MemoryPostAccessModal";
 
 const CreateMemoryPage = () => {
   const MAX_DESCRIPTION_WORDS = 400;
 
   const [memoryPrivacy, setMemoryPrivacy] = useState("비공개");
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   const handleMemoryPrivacyText = () => {
     setMemoryPrivacy((prev) => (prev === "비공개" ? "공개" : "비공개"));
@@ -77,7 +88,13 @@ const CreateMemoryPage = () => {
             />
           </CreateMemoryModule>
         </CreateMemoryContent>
-        <CreateMemoryButton>올리기</CreateMemoryButton>
+        <CreateMemoryButton onClick={handleModalOpen}>
+          올리기
+        </CreateMemoryButton>
+        <MemoryPostAccessModal
+          modalOpen={isModalOpen}
+          handleModalClose={handleModalClose}
+        />
       </CreateMemoryPageContainer>
     </>
   );
