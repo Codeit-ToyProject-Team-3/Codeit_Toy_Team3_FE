@@ -4,14 +4,75 @@
     "groupId": 2,
     "nickname": "달봉 아이들",
     "title": "인천 앞바다에서 무려 60cm 월척을 낚다!",
-    "content": "Hi",
-    "imageUrl": "http://localhost:3000/image_upload/sample-post-image.png",
+    "content": "인천 앞바다에서 월척을 낚았습니다! 가족들과 기억에 오래도록 남을 멋진 하루였어요 가족들과 기억에 오래도록 남을 멋진 하루였어요 가족들과 기억에 오래도록 남을 멋진 하루였어요 인천 앞바다에서 월척을 낚았습니다! 가족들과 기억에 오래도록 남을 멋진 하루였어요 인천 앞바다에서 월척을 낚았습니다!",
+    "imageUrl": "/images/memory-image_dummy.jpg",
     "tags": ["인천", "낚시"],
     "location": "인천 앞바다",
     "moment": "24.01.19",
     "isPublic": "비공개",
     "likeCount": 123,
     "commentCount": 19,
-    "createdAt": "2024-09-27T20:26:42.000Z"
+    "comments": [
+      {
+        "id": 1,
+        "nickname": "김철흥",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 2,
+        "nickname": "김철흥",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 3,
+        "nickname": "김철흥",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 4,
+        "nickname": "김철흥",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 5,
+        "nickname": "김철흥",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 6,
+        "nickname": "임승민",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 7,
+        "nickname": "임승민",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 8,
+        "nickname": "임승민",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 9,
+        "nickname": "임승민",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      },
+      {
+        "id": 10,
+        "nickname": "임승민",
+        "content": "우와 60cm이라니..!! 저도 가족들과 가봐야겠어요~",
+        "timestamp": "24.01.18 21:50"
+      }
+    ]
   }
 ]

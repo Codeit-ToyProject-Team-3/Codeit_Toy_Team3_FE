@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-
+/* eslint-disable react/prop-types */
 import {
   LikeCommentModule,
   MemoryLikeCommentContainer,
@@ -24,34 +21,7 @@ import {
   WriterPrivacyContainer,
 } from "./MemoryDetailCard.styled";
 
-const MemoryDetailCard = () => {
-  const { id } = useParams();
-  const numericID = parseInt(id, 10);
-
-  const [memoryDetail, setMemoryDetail] = useState([]);
-
-  useEffect(() => {
-    const fetchMemoryData = async () => {
-      try {
-        const response = await axios.get("/data/memory-detail.json");
-        const fetchedMemoryInfos = response.data;
-
-        console.log(fetchedMemoryInfos);
-
-        const [filteredMemory] = fetchedMemoryInfos.filter(
-          (memory) => memory.id === numericID
-        );
-
-        console.log(filteredMemory);
-        setMemoryDetail(filteredMemory);
-      } catch (error) {
-        console.error("Error occured: ", error);
-      }
-    };
-
-    fetchMemoryData();
-  }, [numericID]);
-
+const MemoryDetailCard = ({ memoryDetail }) => {
   return (
     <>
       <MemoryCardContainer>

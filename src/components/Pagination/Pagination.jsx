@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+// import { useState } from "react";
 
 import {
   NextArrow,
@@ -10,8 +10,8 @@ import {
   PreviousArrow,
 } from "./Pagination.styled";
 
-const Pagination = ({ groupList, totalPages }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({ groupList, totalPages, currentPage, setCurrentPage }) => {
+  // const [currentPage, setCurrentPage] = useState(1);
   //   console.log(currentPage);
 
   const maxPageButtons = 5; // 페이지네이션 버튼 최대 개수
