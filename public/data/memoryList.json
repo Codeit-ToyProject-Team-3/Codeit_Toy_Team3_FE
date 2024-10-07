@@ -1,0 +1,109 @@
+{
+  "currentPage": 1,
+  "totalPages": 5,
+  "totalItemCount": 50,
+  "data": [
+    {
+      "id": 1,
+      "nickname": "김철흥",
+      "title": "아무런 의미 없는 다툼",
+      "imageUrl": "/images/groupcard_image-5.jpg",
+      "tags": [
+        "memory",
+        "좋은 기억",
+        "memory",
+        "좋은 기억",
+        "memory",
+        "좋은 기억",
+        "memory",
+        "좋은 기억",
+        "memory",
+        "좋은 기억"
+      ],
+      "location": "안국",
+      "moment": "24.02.21",
+      "isPublic": "공개",
+      "likeCount": 123,
+      "commentCount": 7,
+      "createdAt": "2024-02-22T07:47:49.803Z"
+    },
+    {
+      "id": 2,
+      "nickname": "김지원",
+      "title": "차갑게 날 대하지마",
+      "imageUrl": "/images/groupcard_image-2.jpg",
+      "tags": ["string", "string"],
+      "location": "연희동",
+      "moment": "24.02.21",
+      "isPublic": "비공개",
+      "likeCount": 39,
+      "commentCount": 11,
+      "createdAt": "2024-02-22T07:47:49.803Z"
+    },
+    {
+      "id": 3,
+      "nickname": "김지원",
+      "title": "차갑게 날 대하지마",
+      "imageUrl": "/images/groupcard_image-2.jpg",
+      "tags": ["string", "string"],
+      "location": "연희동",
+      "moment": "24.02.21",
+      "isPublic": "공개",
+      "likeCount": 39,
+      "commentCount": 11,
+      "createdAt": "2024-02-22T07:47:49.803Z"
+    },
+    {
+      "id": 4,
+      "nickname": "김지원",
+      "title": "차갑게 날 대하지마",
+      "imageUrl": "/images/groupcard_image-2.jpg",
+      "tags": ["string", "string"],
+      "location": "연희동",
+      "moment": "24.02.21",
+      "isPublic": "공개",
+      "likeCount": 39,
+      "commentCount": 11,
+      "createdAt": "2024-02-22T07:47:49.803Z"
+    },
+    {
+      "id": 5,
+      "nickname": "김지원",
+      "title": "차갑게 날 대하지마",
+      "imageUrl": "/images/groupcard_image-2.jpg",
+      "tags": ["string", "string"],
+      "location": "연희동",
+      "moment": "24.02.21",
+      "isPublic": "비공개",
+      "likeCount": 39,
+      "commentCount": 11,
+      "createdAt": "2024-02-22T07:47:49.803Z"
+    },
+    {
+      "id": 6,
+      "nickname": "김지원",
+      "title": "차갑게 날 대하지마",
+      "imageUrl": "/images/groupcard_image-2.jpg",
+      "tags": ["string", "string"],
+      "location": "연희동",
+      "moment": "24.02.21",
+      "isPublic": "비공개",
+      "likeCount": 39,
+      "commentCount": 11,
+      "createdAt": "2024-02-22T07:47:49.803Z"
+    },
+    {
+      "id": 7,
+      "nickname": "김지원",
+      "title": "차갑게 날 대하지마",
+      "imageUrl": "/images/groupcard_image-2.jpg",
+      "tags": ["string", "string"],
+      "location": "연희동",
+      "moment": "24.02.21",
+      "isPublic": "공개",
+      "likeCount": 39,
+      "commentCount": 11,
+      "createdAt": "2024-02-22T07:47:49.803Z"
+    }
+  ]
+}

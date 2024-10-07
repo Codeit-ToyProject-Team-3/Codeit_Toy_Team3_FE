@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "name": "나이키",
+    "imageUrl": "/images/groupcard_image-1.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 2,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-2.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  },
+  {
+    "id": 3,
+    "name": "달봉이네 가족 달봉이네 가족 어디까지 길어지는 거에요?",
+    "imageUrl": "/images/groupcard_image-3.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 4,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-2.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  },
+  {
+    "id": 5,
+    "name": "나이키",
+    "imageUrl": "/images/groupcard_image-4.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 6,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-5.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  },
+  {
+    "id": 7,
+    "name": "나이키",
+    "imageUrl": "/images/groupcard_image-3.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 8,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-5.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  },
+  {
+    "id": 9,
+    "name": "나이키",
+    "imageUrl": "/images/groupcard_image-1.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 10,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-2.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  },
+  {
+    "id": 11,
+    "name": "나이키",
+    "imageUrl": "/images/groupcard_image-3.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 12,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-2.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  },
+  {
+    "id": 13,
+    "name": "나이키",
+    "imageUrl": "/images/groupcard_image-4.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 14,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-5.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  },
+  {
+    "id": 15,
+    "name": "나이키",
+    "imageUrl": "/images/groupcard_image-3.jpg",
+    "isPublic": "공개",
+    "likeCount": 39,
+    "badgeCount": 11,
+    "postCount": 8,
+    "createdAt": "280",
+    "introduction": "난 나이키라고 해"
+  },
+  {
+    "id": 16,
+    "name": "아디다스",
+    "imageUrl": "/images/groupcard_image-5.jpg",
+    "isPublic": "비공개",
+    "likeCount": 2,
+    "badgeCount": 9,
+    "postCount": 18,
+    "createdAt": "60",
+    "introduction": "난 아디다스라고 해"
+  }
+]
