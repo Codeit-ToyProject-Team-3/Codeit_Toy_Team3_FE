@@ -6,11 +6,13 @@ import CreateMemoryPage from "@pages/CreateMemoryPage/CreateMemoryPage";
 import PrivateAccessPage from "@pages/PrivateAccessPage/PrivateAccessPage";
 import GroupDetailPage from "@pages/GroupDetailPage/GroupDetailPage";
 import MemoryDetailPage from "@pages/MemoryDetailPage/MemoryDetailPage";
+import NotFoundPage from "@pages/NotFound/NotFoundPage";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<GroupListPage />} />
+      <Route path="*" element={<NotFoundPage />} />
       <Route path="/groups/:id" element={<GroupDetailPage />} />
       <Route path="/posts/:id" element={<MemoryDetailPage />} />
       <Route path="/create-group" element={<CreateGroupPage />} />

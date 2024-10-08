@@ -53,6 +53,7 @@ export const CommentDivider = styled.div`
 export const CommentList = styled.div`
   width: 100%;
   margin-top: 20px;
+  margin-bottom: 70px;
 
   display: flex;
   flex-direction: column;
@@ -115,4 +116,26 @@ export const CommentModuleDivider = styled.div`
 
   background-color: ${colors.gray[200]};
   opacity: 0.5;
+`;
+
+// 댓글이 없을 때의 styled-components
+export const NoCommentContainer = styled.div`
+  width: 100%;
+  margin-top: 91px;
+  margin-bottom: 80px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 19px;
+
+  .no-comments {
+    ${({ theme }) => theme.fontStyles.Body1}
+    color: ${colors.gray[500]};
+  }
+
+  .register-notice {
+    ${({ theme }) => theme.fontStyles.Caption2}
+    color: ${colors.gray[400]};
+  }
 `;
