@@ -16,9 +16,20 @@ import {
   StyledTrashIcon,
 } from "./MemoryCommentSection.styled";
 
+import CommentEditRegisterModal from "@components/CommentModal/CommentEditRegisterModal";
 import Pagination from "@components/Pagination/Pagination";
 
 const MemoryCommentSection = ({ memoryDetail }) => {
+  const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
+
+  const handleRegisterModalOpen = () => {
+    setRegisterModalOpen(true);
+  };
+
+  const handleRegisterModalClose = () => {
+    setRegisterModalOpen(false);
+  };
+
   const itemsPerPage = 3;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,7 +43,18 @@ const MemoryCommentSection = ({ memoryDetail }) => {
 
   return (
     <MemoryCommentSectionContainer>
-      <RegisterCommentButton>댓글 등록하기</RegisterCommentButton>
+      <RegisterCommentButton onClick={handleRegisterModalOpen}>
+        댓글 등록하기
+      </RegisterCommentButton>
+      <CommentEditRegisterModal
+        modalOpen={isRegisterModalOpen}
+        handleModalClose={handleRegisterModalClose}
+        modalTitle="댓글 등록"
+        passworTitle="비밀번호 생성"
+        passwordPlaceholder="댓글 비밀번호를 생성해주세요"
+        submitButtonText="등록하기"
+      />
+
       <CommentContainer>
         <h4>댓글 {memoryDetail?.comments?.length}</h4>
         <CommentDivider />
