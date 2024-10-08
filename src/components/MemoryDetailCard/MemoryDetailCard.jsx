@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+
 import {
   LikeCommentModule,
   MemoryLikeCommentContainer,
@@ -21,7 +23,29 @@ import {
   WriterPrivacyContainer,
 } from "./MemoryDetailCard.styled";
 
+import ModalCustom from "@components/ModalCustom/ModalCustom";
+import MemoryEditModal from "@components/MemoryEditModal/MemoryEditModal";
+
 const MemoryDetailCard = ({ memoryDetail }) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleEditModalOpen = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const handleDeleteModalOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <>
       <MemoryCardContainer>
@@ -32,12 +56,29 @@ const MemoryDetailCard = ({ memoryDetail }) => {
             <p className="privacy">{memoryDetail.isPublic}</p>
           </WriterPrivacyContainer>
           <MemoryEditDeleteContainer>
-            <MemoryManageButton className="edit">
+            <MemoryManageButton className="edit" onClick={handleEditModalOpen}>
               추억 수정하기
             </MemoryManageButton>
-            <MemoryManageButton className="delete">
+            <MemoryEditModal
+              modalOpen={isEditModalOpen}
+              handleModalClose={handleEditModalClose}
+            />
+
+            <MemoryManageButton
+              className="delete"
+              onClick={handleDeleteModalOpen}
+            >
               추억 삭제하기
             </MemoryManageButton>
+            {/* Delete Memory Modal Component */}
+            <ModalCustom
+              modalOpen={isDeleteModalOpen}
+              handleModalClose={handleDeleteModalClose}
+              modalTitle="추억 삭제"
+              passworTitle="삭제 권한 인증"
+              passwordPlaceholder="추억 비밀번호를 입력해주세요"
+              submitButtonText="삭제하기"
+            />
           </MemoryEditDeleteContainer>
         </MemoryCardHeader>
         <MemoryCardMainContent>

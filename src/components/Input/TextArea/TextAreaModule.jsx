@@ -10,11 +10,18 @@ import {
   TextAreaWordLimit,
 } from "./TextAreaModule.styled";
 
-const TextAreaModule = ({ title, placeholderContent, maxWords }) => {
+const TextAreaModule = ({
+  title,
+  placeholderContent,
+  maxWords,
+  commentData,
+}) => {
   const textAreaRef = useRef(null);
 
   const [textAreaFocused, setTextAreaFocused] = useState(false);
-  const [textAreaContent, setTextAreaContent] = useState("");
+  const [textAreaContent, setTextAreaContent] = useState(
+    commentData?.content || ""
+  );
 
   useEffect(() => {
     const handleClickOutside = (e) => {
