@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -18,17 +19,28 @@ import {
 
 import Pagination from "@components/Pagination/Pagination";
 
-const PrivateGroupCard = ({ privateGroupList, listTotalPage }) => {
+const PrivateGroupCard = ({ privateGroupList }) => {
   const navigate = useNavigate();
 
   const handleGroupClick = (id) => {
     navigate(`/groups/${id}/verify-password`);
   };
 
+  const itemsPerPage = 6;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = privateGroupList?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
   return (
     <PrivateGroupListWrapper>
       <PrivateGroupListContainer>
-        {privateGroupList?.map((privateGroup) => (
+        {currentItems?.map((privateGroup) => (
           <PrivateGroupCardContainer
             key={privateGroup?.id}
             onClick={() => handleGroupClick(privateGroup?.id)}
@@ -57,7 +69,12 @@ const PrivateGroupCard = ({ privateGroupList, listTotalPage }) => {
           </PrivateGroupCardContainer>
         ))}
       </PrivateGroupListContainer>
-      <Pagination groupList={privateGroupList} totalPages={listTotalPage} />
+      <Pagination
+        groupList={privateGroupList}
+        totalPages={Math.floor(privateGroupList?.length / itemsPerPage) + 1}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </PrivateGroupListWrapper>
   );
 };

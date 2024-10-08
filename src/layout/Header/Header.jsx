@@ -11,6 +11,7 @@ const Header = () => {
     "/create-group",
     "/create-memory",
     "/groups",
+    "/posts",
   ];
 
   return (

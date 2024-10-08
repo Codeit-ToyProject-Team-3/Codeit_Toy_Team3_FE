@@ -19,7 +19,6 @@ const GroupListPage = () => {
   const [privacyCategory, setPrivacyCategory] = useState("공개");
 
   const [groupList, setGroupList] = useState(null);
-  const [listTotalPage, setListTotalPage] = useState(0);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +27,7 @@ const GroupListPage = () => {
     const fetchPublicGroupList = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("/data/groupCard.json");
+        const response = await axios.get("/data/group-card.json");
         const fetchedGroupListData = response.data;
         const fetchedGroupList = fetchedGroupListData.data;
         console.log(fetchedGroupList);
@@ -39,7 +38,6 @@ const GroupListPage = () => {
         console.log(filteredGroupList);
 
         setGroupList(filteredGroupList);
-        setListTotalPage(fetchedGroupListData.totalPages);
       } catch (error) {
         console.error("Error fetching group list", error);
         setGroupList([]);
@@ -58,6 +56,7 @@ const GroupListPage = () => {
         <GroupSearchBar
           privacyCategory={privacyCategory}
           setPrivacyCategory={setPrivacyCategory}
+          placeholderContent="그룹명을 검색해주세요"
         />
         {isLoading ? (
           <p>Loading...</p>
@@ -73,15 +72,9 @@ const GroupListPage = () => {
             </Link>
           </>
         ) : privacyCategory === "공개" ? (
-          <PublicGroupCard
-            publicGroupList={groupList}
-            listTotalPage={listTotalPage}
-          />
+          <PublicGroupCard publicGroupList={groupList} />
         ) : (
-          <PrivateGroupCard
-            privateGroupList={groupList}
-            listTotalPage={listTotalPage}
-          />
+          <PrivateGroupCard privateGroupList={groupList} />
         )}
       </GroupListPageContainer>
     </>

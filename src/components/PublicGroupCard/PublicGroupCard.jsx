@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -18,19 +19,30 @@ import {
 import Header from "@layout/Header/Header";
 import Pagination from "@components/Pagination/Pagination";
 
-const PublicGroupCard = ({ publicGroupList, listTotalPage }) => {
+const PublicGroupCard = ({ publicGroupList }) => {
   const navigate = useNavigate();
 
   const handleGroupClick = (id) => {
     navigate(`groups/${id}`);
   };
 
+  const itemsPerPage = 6;
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = publicGroupList?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
   return (
     <>
       <Header />
       <PublicGroupListWrapper>
         <PublicGroupListContainer>
-          {publicGroupList?.map((publicGroup) => (
+          {currentItems?.map((publicGroup) => (
             <PublicGroupCardContainer
               key={publicGroup?.id}
               onClick={() => handleGroupClick(publicGroup?.id)}
@@ -70,7 +82,12 @@ const PublicGroupCard = ({ publicGroupList, listTotalPage }) => {
             </PublicGroupCardContainer>
           ))}
         </PublicGroupListContainer>
-        <Pagination groupList={publicGroupList} totalPages={listTotalPage} />
+        <Pagination
+          groupList={publicGroupList}
+          totalPages={Math.floor(publicGroupList?.length / itemsPerPage) + 1}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </PublicGroupListWrapper>
     </>
   );
