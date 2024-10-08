@@ -9,11 +9,11 @@ import {
   TextInputWrapper,
 } from "./TextInputModule.styled";
 
-const TextInputModule = ({ title, placeholderContent }) => {
+const TextInputModule = ({ title, placeholderContent, commentNickname }) => {
   const textInputRef = useRef(null);
-  
+
   const [textInputFocused, setTextInputFocused] = useState(false);
-  const [textValue, setTextValue] = useState("");
+  const [textValue, setTextValue] = useState(commentNickname?.nickname || "");
   const [inputErrorMessage, setInputErrorMessage] = useState("");
 
   const handleTextInputValue = (e) => {

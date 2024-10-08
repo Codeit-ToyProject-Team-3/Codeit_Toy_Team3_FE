@@ -19,6 +19,7 @@ const CommentEditRegisterModal = ({
   passworTitle,
   passwordPlaceholder,
   submitButtonText,
+  selectedComment,
 }) => {
   const MAX_COMMENT_WORDS = 80;
 
@@ -34,12 +35,14 @@ const CommentEditRegisterModal = ({
         <TextInputModule
           title="닉네임"
           placeholderContent="닉네임을 입력해주세요"
+          commentNickname={selectedComment}
         />
 
         <TextAreaModule
           title="댓글"
           placeholderContent="댓글을 입력해주세요"
           maxWords={MAX_COMMENT_WORDS}
+          commentData={selectedComment}
         />
 
         <PasswordInput

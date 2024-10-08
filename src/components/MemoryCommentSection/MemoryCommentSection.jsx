@@ -21,14 +21,36 @@ import Pagination from "@components/Pagination/Pagination";
 
 const MemoryCommentSection = ({ memoryDetail }) => {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  // const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  const handleRegisterModalOpen = () => {
+  const [selectedComment, setSelectedComment] = useState(null);
+
+  function handleRegisterModalOpen() {
     setRegisterModalOpen(true);
-  };
+  }
 
   const handleRegisterModalClose = () => {
     setRegisterModalOpen(false);
   };
+
+  const handleEditModalOpen = (comment) => {
+    setSelectedComment(comment);
+    setEditModalOpen(true);
+  };
+
+  const handleEditModalClose = () => {
+    setSelectedComment(null);
+    setEditModalOpen(false);
+  };
+
+  // const handleDeleteModalOpen = () => {
+  //   setDeleteModalOpen(true);
+  // };
+
+  // const handleDeleteModalClose = () => {
+  //   setDeleteModalOpen(false);
+  // };
 
   const itemsPerPage = 3;
 
@@ -68,7 +90,9 @@ const MemoryCommentSection = ({ memoryDetail }) => {
               <CommentModuleMain>
                 <p>{comment.content}</p>
                 <EditDeleteIcon>
-                  <StyledPencilIcon />
+                  <StyledPencilIcon
+                    onClick={() => handleEditModalOpen(comment)}
+                  />
                   <StyledTrashIcon />
                 </EditDeleteIcon>
               </CommentModuleMain>
@@ -76,6 +100,16 @@ const MemoryCommentSection = ({ memoryDetail }) => {
             </CommentModule>
           ))}
         </CommentList>
+
+        <CommentEditRegisterModal
+          modalOpen={isEditModalOpen}
+          handleModalClose={handleEditModalClose}
+          modalTitle="댓글 수정"
+          passworTitle="수정 권한 인증"
+          passwordPlaceholder="댓글 비밀번호를 입력해주세요"
+          submitButtonText="수정하기"
+          selectedComment={selectedComment}
+        />
       </CommentContainer>
       <Pagination
         groupList={memoryDetail}
