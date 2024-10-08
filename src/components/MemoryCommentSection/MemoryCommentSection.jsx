@@ -18,11 +18,12 @@ import {
 
 import CommentEditRegisterModal from "@components/CommentModal/CommentEditRegisterModal";
 import Pagination from "@components/Pagination/Pagination";
+import ModalCustom from "@components/ModalCustom/ModalCustom";
 
 const MemoryCommentSection = ({ memoryDetail }) => {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
-  // const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const [selectedComment, setSelectedComment] = useState(null);
 
@@ -44,13 +45,15 @@ const MemoryCommentSection = ({ memoryDetail }) => {
     setEditModalOpen(false);
   };
 
-  // const handleDeleteModalOpen = () => {
-  //   setDeleteModalOpen(true);
-  // };
+  const handleDeleteModalOpen = (comment) => {
+    setSelectedComment(comment);
+    setDeleteModalOpen(true);
+  };
 
-  // const handleDeleteModalClose = () => {
-  //   setDeleteModalOpen(false);
-  // };
+  const handleDeleteModalClose = () => {
+    setSelectedComment(null);
+    setDeleteModalOpen(false);
+  };
 
   const itemsPerPage = 3;
 
@@ -93,7 +96,9 @@ const MemoryCommentSection = ({ memoryDetail }) => {
                   <StyledPencilIcon
                     onClick={() => handleEditModalOpen(comment)}
                   />
-                  <StyledTrashIcon />
+                  <StyledTrashIcon
+                    onClick={() => handleDeleteModalOpen(comment)}
+                  />
                 </EditDeleteIcon>
               </CommentModuleMain>
               <CommentModuleDivider />
@@ -101,6 +106,7 @@ const MemoryCommentSection = ({ memoryDetail }) => {
           ))}
         </CommentList>
 
+        {/* 댓글 수정 Modal */}
         <CommentEditRegisterModal
           modalOpen={isEditModalOpen}
           handleModalClose={handleEditModalClose}
@@ -109,6 +115,16 @@ const MemoryCommentSection = ({ memoryDetail }) => {
           passwordPlaceholder="댓글 비밀번호를 입력해주세요"
           submitButtonText="수정하기"
           selectedComment={selectedComment}
+        />
+
+        {/* 댓글 삭제 Modal */}
+        <ModalCustom
+          modalOpen={isDeleteModalOpen}
+          handleModalClose={handleDeleteModalClose}
+          modalTitle="댓글 삭제"
+          passworTitle="삭제 권한 인증"
+          passwordPlaceholder="댓글 비밀번호를 입력해주세요"
+          submitButtonText="삭제하기"
         />
       </CommentContainer>
       <Pagination
