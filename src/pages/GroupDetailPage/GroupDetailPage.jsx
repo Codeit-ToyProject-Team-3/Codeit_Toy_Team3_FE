@@ -15,7 +15,7 @@ import {
 import Header from "@layout/Header/Header";
 import GroupSearchBar from "@layout/GroupSearchBar/GroupSearchBar";
 import GroupDetailCard from "@components/GroupDetailCard/GroupDetailCard";
-import PublicMemoeryCard from "@components/PublicMemoryCard/PublicMemoryCard";
+import PublicMemoryCard from "@components/PublicMemoryCard/PublicMemoryCard";
 import PrivateMemoryCard from "@components/PrivateMemoryCard/PrivateMemoryCard";
 
 import noMemoryIcon from "@assets/no-group-icon.svg";
@@ -23,7 +23,6 @@ import noMemoryIcon from "@assets/no-group-icon.svg";
 const GroupDetailPage = () => {
   const [privacyMemory, setPrivacyMemory] = useState("공개");
   const [groupMemoryList, setGroupMemoryList] = useState([]);
-  const [groupMemoryTotalPage, setGroupMemoryTotalPage] = useState(null);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,7 +31,7 @@ const GroupDetailPage = () => {
     const fetchGroupMemoryCardInfos = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("/data/memoryList.json");
+        const response = await axios.get("/data/memory-list.json");
         const fetchedMemoryList = response.data;
         const fetchedMemoryInfo = fetchedMemoryList.data;
 
@@ -43,7 +42,6 @@ const GroupDetailPage = () => {
         );
 
         setGroupMemoryList(filteredMemoryInfos);
-        setGroupMemoryTotalPage(fetchedMemoryList.totalPages);
       } catch (error) {
         console.error("Error occured: ", error);
         setGroupMemoryList([]);
@@ -70,6 +68,7 @@ const GroupDetailPage = () => {
         <GroupSearchBar
           privacyCategory={privacyMemory}
           setPrivacyCategory={setPrivacyMemory}
+          placeholderContent="태그 혹은 제목을 입력해주세요"
         />
         {isLoading ? (
           <p>Loading...</p>
@@ -87,15 +86,9 @@ const GroupDetailPage = () => {
             </Link>
           </>
         ) : privacyMemory === "공개" ? (
-          <PublicMemoeryCard
-            groupMemoryList={groupMemoryList}
-            listTotalPage={groupMemoryTotalPage}
-          />
+          <PublicMemoryCard groupMemoryList={groupMemoryList} />
         ) : (
-          <PrivateMemoryCard
-            groupMemoryList={groupMemoryList}
-            listTotalPage={groupMemoryTotalPage}
-          />
+          <PrivateMemoryCard groupMemoryList={groupMemoryList} />
         )}
       </GroupDetailPageContainer>
     </>
