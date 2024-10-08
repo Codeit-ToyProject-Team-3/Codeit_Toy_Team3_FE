@@ -20,8 +20,20 @@ import {
   MemoryManageButton,
   WriterPrivacyContainer,
 } from "./MemoryDetailCard.styled";
+import { useState } from "react";
+import ModalCustom from "@components/ModalCustom/ModalCustom";
 
 const MemoryDetailCard = ({ memoryDetail }) => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteModalOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+  };
+
   return (
     <>
       <MemoryCardContainer>
@@ -35,9 +47,20 @@ const MemoryDetailCard = ({ memoryDetail }) => {
             <MemoryManageButton className="edit">
               추억 수정하기
             </MemoryManageButton>
-            <MemoryManageButton className="delete">
+            <MemoryManageButton
+              className="delete"
+              onClick={handleDeleteModalOpen}
+            >
               추억 삭제하기
             </MemoryManageButton>
+            <ModalCustom
+              modalOpen={isDeleteModalOpen}
+              handleModalClose={handleDeleteModalClose}
+              modalTitle="추억 삭제"
+              passworTitle="삭제 권한 인증"
+              passwordPlaceholder="추억 비밀번호를 입력해주세요"
+              submitButtonText="삭제하기"
+            />
           </MemoryEditDeleteContainer>
         </MemoryCardHeader>
         <MemoryCardMainContent>
